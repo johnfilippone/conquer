@@ -75,32 +75,54 @@ That section will also give you a general scope and sense of how Vim is structur
 
 \section{Vim Terminology}
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
-NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands
+NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
+searching, bottom-line command (includes searches and anything on bottom line that is not formally a command)
+
+\section{Inner workings}
+General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
+what Vim puts in the registers (sometimes called buffers?)
+switching between modes
 
 \section{Vim Capabilities}
 Writing text
   basic insert/append
   auto completion
-  smart indenting
+  start inserting at nifty places 
+    end of line
+    start of line
+    smart indenting
+  insert x amount of something at once i.e. 3iabcESC writes abcabcabc
 Cursor Navigation
   hjkl
   search
   find
   moving vertically through wrapped line
   searching
-  by word, sentence, paragraph
+  by word, sentence, paragraph, and section (can set different macros for identifying paragraphs, and sections)
   beggining/end of line
-  jump to line by number (G or goto command)
+  jump/goto 
+    to line by number (G or goto command)
+    to column number with num prefix and |
+    goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
+  scrolling
+    automatic scroll as you type passed bottom
+    scroll by screen or half screen
+    scroll by line with cursor in place
+    scroll relative to cursor (zENTER, z., z-)
+    scroll relative to any line (same as z with numeric prefix)
 Editing text
   substitutions
-  deletion 
+  deletion command and all variations
   yank and put
   replace
-    change and all of its variations: cw, C...
+    change and all of its variations: cw, cb, c2b, c0, C, etc 
     type over existing text
   toggle upper/lower case
+  copy/paste within a single file
+  transpose characters (xp)
+  join lines
 Searching
-  search forward/backward
+  search forward/backward with wrapping
   fuzzy find
   automatically search word under the cursor
 Environment
@@ -108,11 +130,22 @@ Environment
   tabs
   file browsing
   buffers?
+  redraw screen Crl-l
 GUI
   Color
   line numbering
     normal numbers
     relative numbers
-Remapping keys
-
+Undo/redo
+  multi level undo/redo
+  undo by line
+  repeat an edit
+Customization
+  Vim script
+  Remapping keys
+  command combinations like ddp
+File management
+  creating files
+  opening/closing files
+  opening files read only
 \end{document}
