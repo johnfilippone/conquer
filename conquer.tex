@@ -1,6 +1,6 @@
 \documentclass[12pt]{book}
 
-\title{How to Conquor the World with Less Keystrokes \\\large Wrap Your Mind Around Vim}
+\title{How to Conquor the World with Less Keystrokes \\.\\\large How to Quickly/Efficiently Learn Vim \\\large and \\\large Is Vim the Right Tool For You?}
 \author{John Filippone}
 
 \begin{document}
@@ -26,7 +26,6 @@ Either the user does not know that Vim is capable of doing the thing they want o
 This book provides a straight forward, consice, and easy-to-understand way of enumerating WHAT Vim does so that you, the user, can get on with the easy part of learning HOW to use only the
 features you want.  
  
-
 \section{Important Historical Perspective}
 When Vim was created, it was made by Bram for Bram, meaning: the engineer who developed Vim initially, developed it for his personal use.
 He developed the features that he personally wanted to use.  
@@ -76,7 +75,8 @@ That section will also give you a general scope and sense of how Vim is structur
 \section{Vim Terminology}
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
-searching, bottom-line command (includes searches and anything on bottom line that is not formally a command)
+searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
+set, map, ab
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -92,10 +92,11 @@ Writing text
     start of line
     smart indenting
   insert x amount of something at once i.e. 3iabcESC writes abcabcabc
+  put from register
+  auto text wrapping (instead of hitting enter)
 Cursor Navigation
   hjkl
-  search
-  find
+  search and find as a motion
   moving vertically through wrapped line
   searching
   by word, sentence, paragraph, and section (can set different macros for identifying paragraphs, and sections)
@@ -110,8 +111,17 @@ Cursor Navigation
     scroll by line with cursor in place
     scroll relative to cursor (zENTER, z., z-)
     scroll relative to any line (same as z with numeric prefix)
+  return to previous cursor position
+  save and goto invisible bookmark (detail: bookmarks are not stored in file; stored in session)
+  read command
+    !sort filter (:r !sort file-that-needs-sorting)
 Editing text
-  substitutions
+  substitutions (regex support)
+    global
+    by line(s)
+    confirmation
+    context aware substitue
+  global deletes, moves, and copies with :g and ex commands
   deletion command and all variations
   yank and put
   replace
@@ -119,27 +129,50 @@ Editing text
     type over existing text
   toggle upper/lower case
   copy/paste within a single file
+    yank or delete into reg then put from reg
+  copy/paste between files
+    use ex commands or vi commands to save content to register then put (lose undo history when switch between files; use tabs instead)
+    read command will copy a full file into the file you are editing
   transpose characters (xp)
   join lines
+  move blocks of text
+    with :g command and pattern matching (helpful if applies to tons of instances in same file hense :g)
+  ex commands
+    usually only useful when need to do something specific everywhere; otherwise there are easier ways to do things
+    still useful to at least be aware of the way ex works and can be accessed in vim
+    vim allows for extreme flexibility with pattern matching and basic move, copy, delete commands; one must open thier mind to these possiblities when faced with a huge repetative task
+    it may be solved with one well-formed, probably long ex command
+    nice examples on p84 of OREILLY
 Searching
-  search forward/backward with wrapping
+  search forward/backward with wrapping or not (regex support)
   fuzzy find
   automatically search word under the cursor
+  highlighting of search terms
+  quick scrolling through search results
+  combine search as motion command with c d p y
+  find
+  case sensitive option
 Environment
   windows (splits)
   tabs
   file browsing
   buffers?
   redraw screen Crl-l
+  folding
+  .vimrc and .exrc files
+    home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
 GUI
   Color
+    syntax highlighting
+    column coloring
   line numbering
     normal numbers
     relative numbers
 Undo/redo
   multi level undo/redo
   undo by line
-  repeat an edit
+  repeat an edit (this is not redo; it is repeat edit)
+  special tricks for repeating substitutions p80 of OREILLY
 Customization
   Vim script
   Remapping keys
@@ -148,4 +181,23 @@ File management
   creating files
   opening/closing files
   opening files read only
+  open file with cursor at position
+    on line number
+    on first occurance of pattern
+    on last line
+  recovering edited buffers after crash
+  write to open file or any file by name or create new file and write to it
+  write or append part of a file to a new file
+  open a bunch of files in one session and switch between them on one screen
+Regex support
+  character classes [: :]
+  collating symbols [. .]
+  equivalence classes [= =]
+  for substitution, regex works in search portion, some other constructs exist for the replacement portion
+  \< and \> for matching beggining and end of words (not a general regex thing? only vim thing?)
+Run Unix commands from vim
+  :!command
+  :sh
+  read output of unix command directly into file (:r !command)
+  
 \end{document}
