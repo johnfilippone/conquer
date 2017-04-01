@@ -94,7 +94,13 @@ Writing text
   insert x amount of something at once i.e. 3iabcESC writes abcabcabc
   put from register
   auto text wrapping (instead of hitting enter)
-Cursor Navigation
+  read command
+    !sort filter (:r !sort file-that-needs-sorting)
+  alphanumeric sort lines
+  registers hold anything, even edit commands 
+  create custom abbreviations for writing text with :ab
+  auto generate matching "" '' [] {} () HTML-tags etc.
+Cursor Navigation 
   hjkl
   search and find as a motion
   moving vertically through wrapped line
@@ -113,8 +119,6 @@ Cursor Navigation
     scroll relative to any line (same as z with numeric prefix)
   return to previous cursor position
   save and goto invisible bookmark (detail: bookmarks are not stored in file; stored in session)
-  read command
-    !sort filter (:r !sort file-that-needs-sorting)
 Editing text
   substitutions (regex support)
     global
@@ -131,7 +135,7 @@ Editing text
   copy/paste within a single file
     yank or delete into reg then put from reg
   copy/paste between files
-    use ex commands or vi commands to save content to register then put (lose undo history when switch between files; use tabs instead)
+    use ex commands or vi commands to save content to register (or just regular yank) then put (lose undo history when switch between files; use tabs instead)
     read command will copy a full file into the file you are editing
   transpose characters (xp)
   join lines
@@ -143,6 +147,7 @@ Editing text
     vim allows for extreme flexibility with pattern matching and basic move, copy, delete commands; one must open thier mind to these possiblities when faced with a huge repetative task
     it may be solved with one well-formed, probably long ex command
     nice examples on p84 of OREILLY
+  filter text in file through Unix commands
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -161,6 +166,7 @@ Environment
   folding
   .vimrc and .exrc files
     home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
+  many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
 GUI
   Color
     syntax highlighting
@@ -176,7 +182,12 @@ Undo/redo
 Customization
   Vim script
   Remapping keys
+    remap command mode keys :map
+    remap insert mode keys :map!
+    remap function keys that are mapped by the terminal (p.110 OREILLY) (look into this more)
+    looks deeper into which exact keys can be remapped
   command combinations like ddp
+  Macros (aka @-Functions)
 File management
   creating files
   opening/closing files
@@ -194,10 +205,15 @@ Regex support
   collating symbols [. .]
   equivalence classes [= =]
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
-  \< and \> for matching beggining and end of words (not a general regex thing? only vim thing?)
+  matching beggining and end of words (not a general regex thing? only vim thing?) 
 Run Unix commands from vim
   :!command
   :sh
   read output of unix command directly into file (:r !command)
+Applied Vim to specific languages
+  HTML
+  Python
   
 \end{document}
+
+
