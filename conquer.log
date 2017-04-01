@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  31 MAR 2017 22:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  1 APR 2017 04:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -54,12 +54,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
- [4] [5] [6]
+ [4] [5] [6] [7]
 (./conquer.aux) ) 
 Here is how much of TeX's memory you used:
  256 strings out of 493029
  2871 string characters out of 6136235
- 63093 words of memory out of 5000000
+ 64093 words of memory out of 5000000
  3870 multiletter control sequences out of 15000+600000
  6365 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -69,10 +69,10 @@ cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on conquer.pdf (6 pages, 80684 bytes).
+Output written on conquer.pdf (7 pages, 81643 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 48 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
