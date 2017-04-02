@@ -11,6 +11,9 @@
 But because vim is so customizable, the how does not matter very much
 once you know which features you want to use, if it turns out that the way to do those things in vim takes a lot of keystokes and are therefore
 not effective, you can remap keys or write scripts to get the same functionality in a totally customized way that works for you
+2. section on how to learn and practice effectively.
+Use the vim help files and the internet.
+Integrate a few commands at a time take it slow at first, think of the most efficient way before you make an edit.
 
 \section{Purpose}
 The object of this book is to help the Vim user efficiently learn the tool by enumerating the vast capabilites of Vim 8.0 concisly and simply.  
@@ -76,7 +79,7 @@ That section will also give you a general scope and sense of how Vim is structur
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab
+set, map, ab, concept of word vs WORD, ctags, tag slacking or tag slacks
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -91,6 +94,8 @@ Writing text
     end of line
     start of line
     smart indenting
+      :set autoindent (next line starts on same indent level on enter)
+      indent in insert mode ctrl-t and ctrl-d
   insert x amount of something at once i.e. 3iabcESC writes abcabcabc
   put from register
   auto text wrapping (instead of hitting enter)
@@ -111,6 +116,7 @@ Cursor Navigation
     to line by number (G or goto command)
     to column number with num prefix and |
     goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
+    jump to matching or closest ( { [ etc with %
   scrolling
     automatic scroll as you type passed bottom
     scroll by screen or half screen
@@ -167,10 +173,19 @@ Environment
   .vimrc and .exrc files
     home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
+  ctags comatability
+    :tag command (look further into this)
+    tag slacking
+  left/right scrolling?
+  copy to system clipboard from Vim
 GUI
   Color
     syntax highlighting
     column coloring
+  highlighting
+    specific column(s)
+    search terms
+    matching { [ ( etc.
   line numbering
     normal numbers
     relative numbers
@@ -217,6 +232,7 @@ Run Unix commands from vim
 Applied Vim to specific languages
   HTML
   Python
+Mouse compatability
   
 \end{document}
 
