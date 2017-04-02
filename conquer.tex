@@ -79,7 +79,7 @@ That section will also give you a general scope and sense of how Vim is structur
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab, concept of word vs WORD, ctags, tag slacking or tag slacks
+set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -154,6 +154,7 @@ Editing text
     it may be solved with one well-formed, probably long ex command
     nice examples on p84 of OREILLY
   filter text in file through Unix commands
+  select text with Visual mode to perform an edit on it
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -163,22 +164,25 @@ Searching
   combine search as motion command with c d p y
   find
   case sensitive option
-Environment
-  windows (splits)
-  tabs
-  file browsing
+  incremental search :set incsearch
+Workflow
+  Environment
+    windows (splits)
+    tabs
+    file browsing
   buffers?
-  redraw screen Crl-l
-  folding
   .vimrc and .exrc files
     home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
     :tag command (look further into this)
-    tag slacking
-  left/right scrolling?
+    tag stacking
   copy to system clipboard from Vim
+  compile from vim
+  automatically jump to compile error lines
 GUI
+  left/right scrolling?
+  folding
   Color
     syntax highlighting
     column coloring
@@ -189,8 +193,10 @@ GUI
   line numbering
     normal numbers
     relative numbers
+  redraw screen Crl-l
+  mode indicator
 Undo/redo
-  multi level undo/redo
+  multi level undo/redo (aka infinite undo?)
   undo by line
   repeat an edit (this is not redo; it is repeat edit)
   special tricks for repeating substitutions p80 of OREILLY
@@ -219,6 +225,7 @@ File management
   write to open file or any file by name or create new file and write to it
   write or append part of a file to a new file
   open a bunch of files in one session and switch between them on one screen
+  open file reguardless of file type
 Regex support
   character classes [: :]
   collating symbols [. .]
