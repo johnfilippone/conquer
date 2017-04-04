@@ -79,7 +79,7 @@ That section will also give you a general scope and sense of how Vim is structur
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user
+set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing,
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -90,6 +90,7 @@ switching between modes
 Writing text
   basic insert/append
   auto completion
+  omni completion
   start inserting at nifty places 
     end of line
     start of line
@@ -103,6 +104,7 @@ Writing text
     !sort filter (:r !sort file-that-needs-sorting)
   alphanumeric sort lines
   registers hold anything, even edit commands 
+  registers hold read only metadata like filename
   create custom abbreviations for writing text with :ab
   auto generate matching "" '' [] {} () HTML-tags etc.
 Cursor Navigation 
@@ -117,6 +119,8 @@ Cursor Navigation
     to column number with num prefix and |
     goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
     jump to matching or closest ( { [ etc with %
+    to the nth percent of a file 
+    to the nth byte
   scrolling
     automatic scroll as you type passed bottom
     scroll by screen or half screen
@@ -155,6 +159,11 @@ Editing text
     nice examples on p84 of OREILLY
   filter text in file through Unix commands
   select text with Visual mode to perform an edit on it
+    select with any vim cursor navigation technique
+    select word, sentence, or paragraph that the cursor is in; ex. 4aw selects 4 words when in Visual mode
+  write right to left
+  black hole register
+  edit binary files -b
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -169,10 +178,8 @@ Workflow
   Environment
     windows (splits)
     tabs
-    file browsing
-  buffers?
-  .vimrc and .exrc files
-    home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
+    customize vim stuff with env vars 
+  home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
     :tag command (look further into this)
@@ -180,6 +187,23 @@ Workflow
   copy to system clipboard from Vim
   compile from vim
   automatically jump to compile error lines
+  File management
+    creating files
+    opening/closing files
+    opening files read only
+    open file with cursor at position
+      on line number
+      on first occurance of pattern
+      on last line
+    recovering edited buffers after crash
+    write to open file or any file by name or create new file and write to it
+    write or append part of a file to a new file
+    open a bunch of files in one session and switch between them on one screen
+    open file reguardless of file type
+    file browsing
+    directly edit compressed files and directories (transparent editing)
+  command tab completion :e :h etc.
+  vim diff
 GUI
   left/right scrolling?
   folding
@@ -195,6 +219,7 @@ GUI
     relative numbers
   redraw screen Crl-l
   mode indicator
+  gvim 
 Undo/redo
   multi level undo/redo (aka infinite undo?)
   undo by line
@@ -202,6 +227,7 @@ Undo/redo
   special tricks for repeating substitutions p80 of OREILLY
 Customization
   Vim script
+    plugins
     basic ex scripting called from bash or :so
       possible to do complicated things like sorting glosseries if you know what you're doing
       can use comments 
@@ -213,25 +239,19 @@ Customization
     looks deeper into which exact keys can be remapped
   command combinations like ddp
   Macros (aka @-Functions)
-File management
-  creating files
-  opening/closing files
-  opening files read only
-  open file with cursor at position
-    on line number
-    on first occurance of pattern
-    on last line
-  recovering edited buffers after crash
-  write to open file or any file by name or create new file and write to it
-  write or append part of a file to a new file
-  open a bunch of files in one session and switch between them on one screen
-  open file reguardless of file type
+  pre/post edit routines
+    VIMINIT env var
+    .vimrc for initialization state
+    .viminfo for session context
+    can define scripts that run when exiting buffers
+    pre and post scripts run automatically when switching buffers in the same session
 Regex support
   character classes [: :]
   collating symbols [. .]
   equivalence classes [= =]
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
   matching beggining and end of words (not a general regex thing? only vim thing?) 
+  look into isident, iskeyword, isfname, and isprint options
 Run Unix commands from vim
   :!command
   :sh
@@ -240,6 +260,11 @@ Applied Vim to specific languages
   HTML
   Python
 Mouse compatability
+Support
+  Vim help files with tags
+  vimtutor
+Backwards compatible with vi
+Vim configurations when compiling Vim
   
 \end{document}
 
