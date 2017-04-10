@@ -79,7 +79,8 @@ That section will also give you a general scope and sense of how Vim is structur
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, 
+set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, hidden, unlisted, modifiable, read-only, 
+read errors), special buffers (quickfix, help, directory, scratch)
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -183,7 +184,13 @@ Workflow
       multi window ex commands
       move cursor from window to window
       resize windows
+        size is in lines and columns; change to n value or +/- lines/columns
+        options 
+          when you switch to a window it will auto resize to your winheight and winwidth option values
+          equalalways, cmdheight, winminwith, winminheight
       move windows around display
+        swap windows with retaining size or retaining window layout
+        rotate windows of a column or row
       tabs
       status lines for each window is a toggle
       :[n]split [++opt] [+cmd] filename
@@ -191,6 +198,7 @@ Workflow
       look into :new and the autocommands it executes
       :sview and :sfind
       look into conditional split commands p179 OREILLY
+      execute command on all windows with :windo 
     customize vim stuff with env vars 
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
