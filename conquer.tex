@@ -1,6 +1,6 @@
 \documentclass[12pt]{book}
 
-\title{How to Conquor the World with Less Keystrokes \\.\\\large How to Quickly/Efficiently Learn Vim \\\large and \\\large Is Vim the Right Tool For You?}
+\title{How to Conquer the World with Less Keystrokes \\.\\\large How to Quickly/Efficiently Learn Vim \\\large and \\\large Is Vim the Right Tool For You?}
 \author{John Filippone}
 
 \begin{document}
@@ -192,6 +192,8 @@ Workflow
         swap windows with retaining size or retaining window layout
         rotate windows of a column or row
       tabs
+        tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
+        cycle from last tab straight to first and vis versa
       status lines for each window is a toggle
       :[n]split [++opt] [+cmd] filename
       equalsalways option to always make new windows equal size
@@ -199,6 +201,10 @@ Workflow
       :sview and :sfind
       look into conditional split commands p179 OREILLY
       execute command on all windows with :windo 
+      open tag or file (on path defined in option variable, path) in new window or tab
+      close windows
+        quit, close, hide, and close all others
+          hidden option
     customize vim stuff with env vars 
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
@@ -223,13 +229,14 @@ Workflow
     open file reguardless of file type
     file browsing
     directly edit compressed files and directories (transparent editing)
+    configure vim to produce backup files
   command tab completion :e :h etc.
   vim diff
 GUI
   left/right scrolling?
   folding
   Color
-    syntax highlighting
+    syntax highlighting (filetype detection beyond extension name)
     column coloring
   highlighting
     specific column(s)
@@ -248,11 +255,34 @@ Undo/redo
   special tricks for repeating substitutions p80 of OREILLY
 Customization
   Vim script
+    if/else
+      inline, elseif and else are optional
+    datetime support
+    variables
+      optionally explicitly define variable scope
+    concatinate with .
+    built in functions
+      execute
+      echo
+      filetype detect
+      exists
+    define functions 
+      with/without args (can you use args?)
+      call
+    get function to call periodically
+      statusline trick p.202 of O'REILLY
+      better way?
+    arrays
+    execute function based on filetype (autocommand)
     plugins
     basic ex scripting called from bash or :so
       possible to do complicated things like sorting glosseries if you know what you're doing
       can use comments 
       use spaces in ex commands to make them more readable
+    execute script based on time of day
+    everything you put in vimrc is technically vim script 
+  Autocommands
+    execute arbitrary script on event happens 
   Remapping keys
     remap command mode keys :map
     remap insert mode keys :map!
