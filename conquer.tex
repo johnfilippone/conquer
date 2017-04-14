@@ -108,6 +108,7 @@ Writing text
   registers hold read only metadata like filename
   create custom abbreviations for writing text with :ab
   auto generate matching "" '' [] {} () HTML-tags etc.
+  digraphs
 Cursor Navigation 
   hjkl
   search and find as a motion
@@ -129,9 +130,12 @@ Cursor Navigation
     scroll relative to cursor (zENTER, z., z-)
     scroll relative to any line (same as z with numeric prefix)
   return to previous cursor position
-  save and goto invisible bookmark (detail: bookmarks are not stored in file; stored in session)
+  save and goto invisible bookmark  called mark
+    see all marks with :marks
+    special marks exist
+    bookmarks are not stored in file; stored in session
 Editing text
-  substitutions (regex support)
+  substitutions (regex support) 
     global
     by line(s)
     confirmation
@@ -165,6 +169,7 @@ Editing text
   write right to left
   black hole register
   edit binary files -b
+  delete up until predefined mark
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -175,6 +180,7 @@ Searching
   find
   case sensitive option
   incremental search :set incsearch
+  search history with arrow keys
 Workflow
   Environment
     windows (splits)
@@ -255,6 +261,7 @@ Undo/redo
   special tricks for repeating substitutions p80 of OREILLY
 Customization
   Vim script
+    .vim scripts in vim runtime directories serve as good examples
     if/else
       inline, elseif and else are optional
     datetime support
@@ -262,6 +269,7 @@ Customization
       optionally explicitly define variable scope
     concatinate with .
     built in functions
+      look into help file usr41.txt(has underscore after usr but tex hates it) for details on over 200 built in functions
       execute
       echo
       filetype detect
@@ -273,16 +281,27 @@ Customization
       statusline trick p.202 of O'REILLY
       better way?
     arrays
+    dictionaries
+    context conversion for variables (most notably string to int..verify this!)
     execute function based on filetype (autocommand)
     plugins
     basic ex scripting called from bash or :so
-      possible to do complicated things like sorting glosseries if you know what you're doing
+      possible to do complicated things if you know what you're doing
+        sorting glosseries
+        updating last mod time of the file
+        changing tabwidth for different file types
       can use comments 
       use spaces in ex commands to make them more readable
     execute script based on time of day
     everything you put in vimrc is technically vim script 
-  Autocommands
-    execute arbitrary script on event happens 
+    Autocommands
+      execute arbitrary script on event happens 
+      decide which files will be subject to the autocmd script
+      groups
+      delete commands when they are no longer needed
+        allows for dynamic changing of autocommands and which files they execute on
+      can delete groups but make sure to delete all commands in group first
+    evaluating expressions (not only int math)
   Remapping keys
     remap command mode keys :map
     remap insert mode keys :map!
@@ -302,9 +321,11 @@ Regex support
   equivalence classes [= =]
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
   matching beggining and end of words (not a general regex thing? only vim thing?) 
-  look into isident, iskeyword, isfname, and isprint options
+  look into isident, iskeyword, isfname, magic, and isprint options
 Run Unix commands from vim
-  :!command
+  :!command 
+    is this technically filter?
+    mix this with motion commands
   :sh
   read output of unix command directly into file (:r !command)
 Applied Vim to specific languages
