@@ -79,8 +79,8 @@ That section will also give you a general scope and sense of how Vim is structur
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, hidden, unlisted, modifiable, read-only, 
-read errors), special buffers (quickfix, help, directory, scratch)
+set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only, 
+read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -212,12 +212,18 @@ Workflow
         quit, close, hide, and close all others
           hidden option
     customize vim stuff with env vars 
+    edit multiple files
+      vim f1.txt f2.txt ...
+      see files with :args
+      use next and previous to shuffle through or shortcut to alternate file
+    move around to different files with buffer switching commands
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
     :tag command (look further into this)
     tag stacking
   copy to system clipboard from Vim
+    in gvim this is default I think? verify! 
   compile from vim
   automatically jump to compile error lines
   File management
@@ -254,6 +260,15 @@ GUI
   redraw screen Crl-l
   mode indicator
   gvim 
+    basic point click and scroll you expect
+    gvimrc
+    checkout scrollbars; customizing them; use of scroll bars with multiple windows
+    menus 
+      control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
+      control order of items within menus
+      control spacing between menu items
+      make your own menus and menu items that execute vim commands
+      tear off menues
 Undo/redo
   multi level undo/redo (aka infinite undo?)
   undo by line
@@ -311,7 +326,7 @@ Customization
   Macros (aka @-Functions)
   pre/post edit routines
     VIMINIT env var
-    .vimrc for initialization state
+    .vimrc for initialization state (and gvimrc; executed after vimrc if using gvim)
     .viminfo for session context
     can define scripts that run when exiting buffers
     pre and post scripts run automatically when switching buffers in the same session
