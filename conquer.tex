@@ -80,24 +80,70 @@ Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), comma
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
 set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only, 
-read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer
+read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir,
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
 what Vim puts in the registers (sometimes called buffers?)
 switching between modes
+concept of a word
+concept of an edit
+buffers
+tags priority and kind
+gvim menu items priority structure
+syntax groups and subgroups for coloring (are they used for anything else?)
 
 \section{Vim Capabilities}
 Writing text
   basic insert/append
-  auto completion
-  omni completion
+  completion
+    whole line
+    current file keywords
+    dictionary option keywords
+      initially dictionary option is empty; must add a dictionary file
+    thesaurus option keywords
+      initially thesaurus option is empty; must add a thesaurus file
+      can search multiple thesauruses 
+      possible to use a programming thesaurus i.e. retrieve getchar getcwd get direntries getenv getgrent
+      can get info in the pop up menu about which thesaurus each suggestion comes from
+    current and included file keywords
+    tags (ctags)
+    filenames
+      searches only current directory 
+    macros
+    vim command completion (useful for developing scripts)
+    user-defined through completefunc option
+    omni-completion
+      available for c, css, html, javascript, php, python, ruby, sql, xml, maybe more by now
+    spelling suggestions
+    generic complete with ctrl-N
+      this does potentially all the other complete methods all in one
+      the exact complete methods used are defined by the complete option 
   start inserting at nifty places 
     end of line
     start of line
+    beggining of new line above or below
     smart indenting
       :set autoindent (next line starts on same indent level on enter)
       indent in insert mode ctrl-t and ctrl-d
+      automatically insert leading comment characters when writing a comment that exceeds length of line defined by wrapmargin or textwidth
+      audoindent and smartindent
+      cindent
+        probably best for most programmers
+        customization
+          cinkeys: keys that trigger a reevaluation of indenting
+          cinoptions: customizes a lot of the syntax related indenting behavior; look more into this
+          cinwords: words that trigger a reevaluation of indenting (case sensitive regardless of ignorecase option)
+      indentexpr
+        defines an expression that is evaluated each time a new line is created in a file
+        the expression evaluates to a number of indents for that line
+        scripts exist in VIMRUNTIME for most languages already; use 'filetype plugin indent on' to use the appropriate one based on filetype
+    regular indenting
+      use tab in insert mode
+      tab over syntax or otherwise defined blocks through various methods
+  inserting tabs vs spaces
+    expandtab makes the TAB key insert spaces
+    override this with CTRL-V before writing a tab (useful for Makefiles)
   insert x amount of something at once i.e. 3iabcESC writes abcabcabc
   put from register
   auto text wrapping (instead of hitting enter)
@@ -120,7 +166,7 @@ Cursor Navigation
     to line by number (G or goto command)
     to column number with num prefix and |
     goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
-    jump to matching or closest ( { [ etc with %
+    jump to matching or closest ( { [ and more with %
     to the nth percent of a file 
     to the nth byte
   scrolling
@@ -152,6 +198,8 @@ Editing text
   copy/paste between files
     use ex commands or vi commands to save content to register (or just regular yank) then put (lose undo history when switch between files; use tabs instead)
     read command will copy a full file into the file you are editing
+  copy/paste with basic point right lick method
+    when smart indenting is on this can result in the progressivly cascading indent problem; solve with set paste?  look into this
   transpose characters (xp)
   join lines
   move blocks of text
@@ -166,6 +214,11 @@ Editing text
   select text with Visual mode to perform an edit on it
     select with any vim cursor navigation technique
     select word, sentence, or paragraph that the cursor is in; ex. 4aw selects 4 words when in Visual mode
+    select lines
+    slect blocks (can't do this in your average gui editor)
+      useful for tables
+      insert, append, replace, or change text to multiple lines on the same column
+      indent blocks
   write right to left
   black hole register
   edit binary files -b
@@ -181,6 +234,10 @@ Searching
   case sensitive option
   incremental search :set incsearch
   search history with arrow keys
+  search for def of variable (local or global scope)
+  jump to macro def
+  display macro definition of macro under the cursor
+  search for a word under the cursor in the current file an dany brought in by #include directives: [CTRL-I, ]CTRL-I
 Workflow
   Environment
     windows (splits)
@@ -220,8 +277,12 @@ Workflow
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
-    :tag command (look further into this)
+    :tag command (look further into this) 
+    :tags shows list of tags that you have traversed through
+    :tagselect shows instances of the same tag
     tag stacking
+    tags option defines where vim looks for tags
+    compatible with etags
   copy to system clipboard from Vim
     in gvim this is default I think? verify! 
   compile from vim
@@ -242,14 +303,50 @@ Workflow
     file browsing
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
+    teach vim new filetypes based on unfamiliar file extensions (ex. let vim know that a .inc extension is a C file)
   command tab completion :e :h etc.
   vim diff
+  Undo/redo
+    multi level undo/redo (aka infinite undo?)
+    undo by line
+    repeat an edit (this is not redo; it is repeat edit)
+    special tricks for repeating substitutions p80 of OREILLY
+  Folding
+    nested folds
+    fold types
+      syntax based
+        use set foldmethod=syntax and set foldenable
+      indent based
+        use set foldmethod=indent
+        use set foldlevel=n to define how much you see and toggle foldlevel with zm and zr
+      regex defined
+      manually defined
+        use any motion commands with a z command
+      marker defined
+      diff differences are folded
+    operate folds recursively or one at a time (open, close, delete, toggle) (is toggle same as open/close?)
+    look into foldenable an dfoldlevel
+    foldcolumns visual que on the left if you're into that
+    execute command on a folded line will execute that command on every line in the fold
+    keep manually defined fold with :mkview and :loadview
 GUI
   left/right scrolling?
   folding
   Color
     syntax highlighting (filetype detection beyond extension name)
+      syntax defining files are in VIMRUNTIME/syntax
     column coloring
+    colorschemes
+      I recommend base16-3024
+      customize with colorscheme, hightlight, and background options
+      redefine coloring for syntax groups with highlight command
+      :highlight will show you all coloring for all syntax groups
+      customize syntax group coloring for specific file types by including it in an after script
+        ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
+        also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
+      create your own syntax file 
+        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax 
+    color test
   highlighting
     specific column(s)
     search terms
@@ -259,6 +356,7 @@ GUI
     relative numbers
   redraw screen Crl-l
   mode indicator
+  show white space chars with :list
   gvim 
     basic point click and scroll you expect
     gvimrc
@@ -269,11 +367,14 @@ GUI
       control spacing between menu items
       make your own menus and menu items that execute vim commands
       tear off menues
-Undo/redo
-  multi level undo/redo (aka infinite undo?)
-  undo by line
-  repeat an edit (this is not redo; it is repeat edit)
-  special tricks for repeating substitutions p80 of OREILLY
+    toolbar 
+      treated similarly as a one dimentional menu
+      uses bmp images as icons
+      define tooltips for icons
+    Windows gvim
+      self installing executable
+      basic copy/pasting is compatible with System clipboard
+    look into gvim specific options
 Customization
   Vim script
     .vim scripts in vim runtime directories serve as good examples
@@ -350,6 +451,11 @@ Mouse compatability
 Support
   Vim help files with tags
   vimtutor
+  use K to open man page for word under cursor
+    K takes a prefix number i.e. 2K to specify section number in the man page
+    keywordprog option defines progrm that is executed by K i.e. man in unix
+    keywordprog can be modified for example to nothing, signaling vim to use :help
+    the iskeyword option defines what K defines as a word
 Backwards compatible with vi
 Vim configurations when compiling Vim
   
