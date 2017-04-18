@@ -1,6 +1,6 @@
 \documentclass[12pt]{book}
 
-\title{How to Conquer the World with Less Keystrokes \\.\\\large How to Quickly/Efficiently Learn Vim \\\large and \\\large Is Vim the Right Tool For You?}
+\title{Wrap Your Mind Around Vim 8.0}
 \author{John Filippone}
 
 \begin{document}
@@ -92,6 +92,9 @@ buffers
 tags priority and kind
 gvim menu items priority structure
 syntax groups and subgroups for coloring (are they used for anything else?)
+map overrides normal vim functionality 
+order of initialization files like vimrc, exrc, etc.
+viminfo and retaining session state
 
 \section{Vim Capabilities}
 Writing text
@@ -155,6 +158,9 @@ Writing text
   create custom abbreviations for writing text with :ab
   auto generate matching "" '' [] {} () HTML-tags etc.
   digraphs
+    there are built in shortcuts for typing; just have to learn them
+  easily generate box outlines for box comments with abreviations
+  abreviations
 Cursor Navigation 
   hjkl
   search and find as a motion
@@ -223,6 +229,7 @@ Editing text
   black hole register
   edit binary files -b
   delete up until predefined mark
+  conifgure backspace key with backspace option
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -237,7 +244,7 @@ Searching
   search for def of variable (local or global scope)
   jump to macro def
   display macro definition of macro under the cursor
-  search for a word under the cursor in the current file an dany brought in by #include directives: [CTRL-I, ]CTRL-I
+  search for a word under the cursor in the current file an dany brought in by include directives: [CTRL-I, ]CTRL-I
 Workflow
   Environment
     windows (splits)
@@ -274,6 +281,7 @@ Workflow
       see files with :args
       use next and previous to shuffle through or shortcut to alternate file
     move around to different files with buffer switching commands
+    save current session settings to vimrc file with :mkvimrc filename
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
@@ -285,7 +293,14 @@ Workflow
     compatible with etags
   copy to system clipboard from Vim
     in gvim this is default I think? verify! 
-  compile from vim
+  edit-compile-edit cycle with quick fix
+    find out if this can be done in many languages, not just c
+    compile from vim with :make filename
+    define program used to make with makeprg option
+    jump to location of errors
+    easily move between locations of all the errors
+  rename refactor with vimgrep and quick fix
+    p 283 O'REILLY
   automatically jump to compile error lines
   File management
     creating files
@@ -300,7 +315,12 @@ Workflow
     write or append part of a file to a new file
     open a bunch of files in one session and switch between them on one screen
     open file reguardless of file type
+      edit binary files; set the binary option for safer editing; this turns on/off some vim settings that make editing binaries safer but editing binaries is still not recommended
     file browsing
+      delete and rename files and directories
+      search thorugh dir like a normal vim file
+      open file in split window
+      can you do a quiet open? where file goes into a new tab?
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
     teach vim new filetypes based on unfamiliar file extensions (ex. let vim know that a .inc extension is a C file)
@@ -308,9 +328,11 @@ Workflow
   vim diff
   Undo/redo
     multi level undo/redo (aka infinite undo?)
+      by default undolevels is 1000
     undo by line
     repeat an edit (this is not redo; it is repeat edit)
     special tricks for repeating substitutions p80 of OREILLY
+    undo/redo branching; see usr32.txt
   Folding
     nested folds
     fold types
@@ -329,7 +351,52 @@ Workflow
     foldcolumns visual que on the left if you're into that
     execute command on a folded line will execute that command on every line in the fold
     keep manually defined fold with :mkview and :loadview
+  edit files remotely
+    scp, ftp, sftp, http, dav, rcp
+  backups
+    automatically backup files
+    specify location for backups
+    backup, writebackup, backupcopy, backupdir, backupnext options
+  save session state 
+    viminfo file
+      managed by the viminfo option parameters
+        save lines for each register up to n lines
+        number of search pattern items to save
+        number of command line commands to save
+        max files vim will maintain info on
+      contains
+        command line history
+        search string history
+        input line history
+        registers
+        file marks
+        last search and substitute patterns
+        buffer list
+        global variables
+    mksession
+      :mksession filename will save just about everything about the session into a file that can be sourced in a vim session later
+      managed by sessionoptions option
+      what you can save
+        empty windows
+        windows and tabs
+        hidden and unloaded buffers
+        current dir
+        manually created folds, state of folds, local fold options
+        global vars
+        help window
+        local options i.e. options set locally to a particular window or buffer
+        options
+        window sizes
+        dir in which session file is located
+        unix end of line format
+        window position on the screen
+  quick command history reference with ctrl-f in commandline
 GUI
+  wrap or no wrap for horizontal lines
+    vim might shift lines left and right to make them fit? check this out
+    slidescroll option limits such shifting
+    sidescrolloff option may also be useful
+    listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
   left/right scrolling?
   folding
   Color
@@ -375,6 +442,17 @@ GUI
       self installing executable
       basic copy/pasting is compatible with System clipboard
     look into gvim specific options
+  Run Unix commands from vim
+    :!command 
+      is this technically filter?
+      mix this with motion commands
+    :sh
+    read output of unix command directly into file (:r !command)
+  convert files to html with :TOhtml command
+  show differences between two files
+    vimdiff
+    non unix vim versions come with a vim version of diff (unix of course uses the built in command)
+    diffexpr option defines replacement expression 
 Customization
   Vim script
     .vim scripts in vim runtime directories serve as good examples
@@ -438,12 +516,6 @@ Regex support
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
   matching beggining and end of words (not a general regex thing? only vim thing?) 
   look into isident, iskeyword, isfname, magic, and isprint options
-Run Unix commands from vim
-  :!command 
-    is this technically filter?
-    mix this with motion commands
-  :sh
-  read output of unix command directly into file (:r !command)
 Applied Vim to specific languages
   HTML
   Python
