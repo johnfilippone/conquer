@@ -7,7 +7,7 @@
 \maketitle
 
 \section{ideas that need to be fit in somewhere}
-1. This book does not go into detail about how to use vim, just what it does.  
+1. This book does not go into detail about how to use vim, just what it does.
 But because vim is so customizable, the how does not matter very much
 once you know which features you want to use, if it turns out that the way to do those things in vim takes a lot of keystokes and are therefore
 not effective, you can remap keys or write scripts to get the same functionality in a totally customized way that works for you
@@ -16,46 +16,46 @@ Use the vim help files and the internet.
 Integrate a few commands at a time take it slow at first, think of the most efficient way before you make an edit.
 
 \section{Purpose}
-The object of this book is to help the Vim user efficiently learn the tool by enumerating the vast capabilites of Vim 8.0 concisly and simply.  
+The object of this book is to help the Vim user efficiently learn the tool by enumerating the vast capabilites of Vim 8.0 concisly and simply.
 
 \section{This Book's Unique Approach}
-This is not a 'HOW to use Vim' book. 
-It is more of a 'this is WHAT Vim can do; now that you know what it does and what the features are technically called, you can easily learn how to use only the features of Vim 
-that you actually care about on your own' book. 
-The approach of this book is based on the premise that learning HOW to use a particular feature in Vim is easy; the hard part is figureing out the WHAT feature you want to learn.  
-Once you know what the thing you want to do is and what it is called, all it takes some internet searching and some practice.  
+This is not a 'HOW to use Vim' book.
+It is more of a 'this is WHAT Vim can do; now that you know what it does and what the features are technically called, you can easily learn how to use only the features of Vim
+that you actually care about on your own' book.
+The approach of this book is based on the premise that learning HOW to use a particular feature in Vim is easy; the hard part is figureing out the WHAT feature you want to learn.
+Once you know what the thing you want to do is and what it is called, all it takes some internet searching and some practice.
 Most people get stuck in Vim because they do not understand the capabilities of the tool or the technical terminology associated with it.
 Either the user does not know that Vim is capable of doing the thing they want or the user knows what they want and suspects that Vim can do it but has no idea what the feature is called.
 This book provides a straight forward, consice, and easy-to-understand way of enumerating WHAT Vim does so that you, the user, can get on with the easy part of learning HOW to use only the
-features you want.  
- 
+features you want.
+
 \section{Important Historical Perspective}
 When Vim was created, it was made by Bram for Bram, meaning: the engineer who developed Vim initially, developed it for his personal use.
-He developed the features that he personally wanted to use.  
+He developed the features that he personally wanted to use.
 As years went on and Bram continued developing, the community asked for other features that Bram did not necessarily care about.
-He implemented them anyway as long as he felt enough people would enjoy having them. 
+He implemented them anyway as long as he felt enough people would enjoy having them.
 After decades of development, Vim has become a vast collection of features.
-There are too many for any one person to really need or want or use them all.  
+There are too many for any one person to really need or want or use them all.
 The vast set of features is meant to accomodate a vast set of users where each user only needs and/or wants a small subset of all features.
-It is for this reason that this book focues on efficient learning of Vim rather than complete learning.  
+It is for this reason that this book focues on efficient learning of Vim rather than complete learning.
 
 \section{How Most People Learn Vim}
-Most people are thrust into Vi and/or Vim and are forced to frantically learn the basic editing commands.  
-Chances are that if this is the case we are talking about an engineer or scientist; let's call him Steve.  
-Steve realizes after learning hjkl cursor navigation that the impact of editor efficiency on his workflow is significant so Steve sets out to learn some more useful commands on the internet 
-or perhaps a book.  
-Unfortunately, most books for Vim are recipe books.  
-They provide tutorial on specific features or describe great ways to solve common problems with Vim.  
-These are great for picking up tricks but you will brush through many of these before learning the key set of Vim features that work best for you and the task you are applying them to.  
-Steve gets tired of that pretty quickly.  
-The internet can be very helpful if you know what you are looking for as long as you don't fall into a wormhole of the extremely mystifying power-user language.  
-The weird dialog about buffers and Ex-mode etc. is easy enough for you to sift through but the real trouble for Steve is the former.  
-When you start using Vim you have no idea what you want to learn because you have no idea what Vim can do!  
-Even though Steve has a vuage idea of what functionality he wants, he does not know the proper Vim terminology for the thing he wants to do.  
+Most people are thrust into Vi and/or Vim and are forced to frantically learn the basic editing commands.
+Chances are that if this is the case we are talking about an engineer or scientist; let's call him Steve.
+Steve realizes after learning hjkl cursor navigation that the impact of editor efficiency on his workflow is significant so Steve sets out to learn some more useful commands on the internet
+or perhaps a book.
+Unfortunately, most books for Vim are recipe books.
+They provide tutorial on specific features or describe great ways to solve common problems with Vim.
+These are great for picking up tricks but you will brush through many of these before learning the key set of Vim features that work best for you and the task you are applying them to.
+Steve gets tired of that pretty quickly.
+The internet can be very helpful if you know what you are looking for as long as you don't fall into a wormhole of the extremely mystifying power-user language.
+The weird dialog about buffers and Ex-mode etc. is easy enough for you to sift through but the real trouble for Steve is the former.
+When you start using Vim you have no idea what you want to learn because you have no idea what Vim can do!
+Even though Steve has a vuage idea of what functionality he wants, he does not know the proper Vim terminology for the thing he wants to do.
 That makes searching for a how-to very hard.
-Naturally, this is where Steve stops learning and decides he is relatively content with getting by on his fair amount of editing efficiency.  
-Every once in a while Steve sees his coworker doing something slick in the editor and says, "hey...how did you do that?"  
-Steve might also learn something new after getting fed up with doing some repetative task and frantically searching the internet for a solution but Steve has the same key issue.  
+Naturally, this is where Steve stops learning and decides he is relatively content with getting by on his fair amount of editing efficiency.
+Every once in a while Steve sees his coworker doing something slick in the editor and says, "hey...how did you do that?"
+Steve might also learn something new after getting fed up with doing some repetative task and frantically searching the internet for a solution but Steve has the same key issue.
 Steve is smart and can learn to do just about anything, but when it comes to Vim he has no idea what it is that he needs to learn.
 
 \section{How You Ought To Learn Vim}
@@ -63,38 +63,40 @@ Steve is smart and can learn to do just about anything, but when it comes to Vim
 \item Understand what Vim has to offer.
 \item Pick a subset of key features you need to learn in order to have an efficient workflow for your specific task.
 \item Learn each of these features through the Vim User Manual, books, and/or the internet.
-\item Practice using them enough to commit them to muscle memory for a truly efficient workflow. 
+\item Practice using them enough to commit them to muscle memory for a truly efficient workflow.
 \end{itemize}
-This is an efficient method of learning Vim or any tool. 
-Only learn the features you actually care to use. 
+This is an efficient method of learning Vim or any tool.
+Only learn the features you actually care to use.
 Know what the tool can do so that later on down the road when you need some other functionality, you know what to look for.
 
 \section{How to Use This Book}
-You can read it straight through or you can skip to the parts you really care about.  
+You can read it straight through or you can skip to the parts you really care about.
 It will be valuable to at least skim all of the material so that you come a way with an understanding of the full scope of Vim capabilites.
 If you are mystified by the terminology in this book, see the Vim Terminology section in the back.
 That section will also give you a general scope and sense of how Vim is structured.
 
 \section{Vim Terminology}
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
-NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of 
-searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax), 
-set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only, 
-read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir,
+NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of
+searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax),
+set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only,
+read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
 what Vim puts in the registers (sometimes called buffers?)
 switching between modes
-concept of a word
+concept of a word and WORD p 184 of Oualline
+  concept of how vim interprets filenames, identifies and printing characters is related
 concept of an edit
 buffers
 tags priority and kind
 gvim menu items priority structure
 syntax groups and subgroups for coloring (are they used for anything else?)
-map overrides normal vim functionality 
+map overrides normal vim functionality
 order of initialization files like vimrc, exrc, etc.
 viminfo and retaining session state
+ctrl-Q and ctrl-S should be avoided in mappings because they are commands for the terminal to stop and start showing otuput; look into this
 
 \section{Vim Capabilities}
 Writing text
@@ -103,17 +105,18 @@ Writing text
     whole line
     current file keywords
     dictionary option keywords
-      initially dictionary option is empty; must add a dictionary file
+      initially dictionary option is empty; must add a dictionary file or multiple
     thesaurus option keywords
-      initially thesaurus option is empty; must add a thesaurus file
-      can search multiple thesauruses 
+      initially thesaurus option is empty; must add a thesaurus file or multiple
+      can search multiple thesauruses
       possible to use a programming thesaurus i.e. retrieve getchar getcwd get direntries getenv getgrent
       can get info in the pop up menu about which thesaurus each suggestion comes from
     current and included file keywords
     tags (ctags)
     filenames
-      searches only current directory 
+      searches only current directory
     macros
+      sleep command can be useful for pausing macro execution
     vim command completion (useful for developing scripts)
     user-defined through completefunc option
     omni-completion
@@ -121,10 +124,12 @@ Writing text
     spelling suggestions
     generic complete with ctrl-N
       this does potentially all the other complete methods all in one
-      the exact complete methods used are defined by the complete option 
-  start inserting at nifty places 
+      the exact complete methods used are defined by the complete option
+    where vim searhes for words is managed by complete option
+    path option defines where vim looks for files
+  start inserting at nifty places
     end of line
-    start of line
+    start of line; this can be first non blank char or first column regardless if it is blank
     beggining of new line above or below
     smart indenting
       :set autoindent (next line starts on same indent level on enter)
@@ -153,27 +158,40 @@ Writing text
   read command
     !sort filter (:r !sort file-that-needs-sorting)
   alphanumeric sort lines
-  registers hold anything, even edit commands 
+  registers hold anything, even edit commands
   registers hold read only metadata like filename
   create custom abbreviations for writing text with :ab
   auto generate matching "" '' [] {} () HTML-tags etc.
   digraphs
     there are built in shortcuts for typing; just have to learn them
-  easily generate box outlines for box comments with abreviations
+  ga will show you ascii number or char under cursor
+  comments
+    easily generate box outlines for box comments with abreviations
+    maybe us external program, boxes, to make comment boxes
+    auto wrap comments
+      this means when you are writing a comment, the editor will automatically input the comment leader on the next line
+      does this work for languages other than c?
+      managed by formatoptions option
+    comment and uncomment blocks easily with block visual mode
   abreviations
-Cursor Navigation 
+  use unix program fmt for formating
+    set formatprg=fmt
+  write in foreign languages including right to left languages, farsi and hebrew
+    also other languages; maps keyboard to other language characters; need to look into how this is done more
+Cursor Navigation
   hjkl
   search and find as a motion
   moving vertically through wrapped line
   searching
   by word, sentence, paragraph, and section (can set different macros for identifying paragraphs, and sections)
   beggining/end of line
-  jump/goto 
+  moving to first non black char of line
+  jump/goto
     to line by number (G or goto command)
     to column number with num prefix and |
     goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
     jump to matching or closest ( { [ and more with %
-    to the nth percent of a file 
+    to the nth percent of a file
     to the nth byte
   scrolling
     automatic scroll as you type passed bottom
@@ -181,13 +199,15 @@ Cursor Navigation
     scroll by line with cursor in place
     scroll relative to cursor (zENTER, z., z-)
     scroll relative to any line (same as z with numeric prefix)
+    scroll specified amount specified by scroll option
+    control amount of scroll when cursor moving toward the edge of the screen
   return to previous cursor position
   save and goto invisible bookmark  called mark
     see all marks with :marks
     special marks exist
     bookmarks are not stored in file; stored in session
 Editing text
-  substitutions (regex support) 
+  substitutions (regex support)
     global
     by line(s)
     confirmation
@@ -196,7 +216,7 @@ Editing text
   deletion command and all variations
   yank and put
   replace
-    change and all of its variations: cw, cb, c2b, c0, C, etc 
+    change and all of its variations: cw, cb, c2b, c0, C, etc
     type over existing text
   toggle upper/lower case
   copy/paste within a single file
@@ -208,6 +228,7 @@ Editing text
     when smart indenting is on this can result in the progressivly cascading indent problem; solve with set paste?  look into this
   transpose characters (xp)
   join lines
+    joinspaces option will put two spaces in between sentences when joining
   move blocks of text
     with :g command and pattern matching (helpful if applies to tons of instances in same file hense :g)
   ex commands
@@ -230,6 +251,17 @@ Editing text
   edit binary files -b
   delete up until predefined mark
   conifgure backspace key with backspace option
+  justify text so that it looks nice; i.e. put line breaks in nice places automatically
+    VIRUNTIME/macros/justify.vim
+    gq does it
+    gqmotion also works i.e. useful with paragraph motion
+    gqip will do it to the paragraph from inside the paragraph instead of having to be on the first line or first char of paragraph
+  align text; left right center
+    :1,5 right 30
+    30 is the width so text will align right to column 30
+  rot13 encrypt with g??
+  edit a bunch of files the same way
+    batch file i.e. a vim script containing a set of commands that you can run on a file from the unix command line
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -255,13 +287,14 @@ Workflow
       move cursor from window to window
       resize windows
         size is in lines and columns; change to n value or +/- lines/columns
-        options 
+        options
           when you switch to a window it will auto resize to your winheight and winwidth option values
           equalalways, cmdheight, winminwith, winminheight
       move windows around display
         swap windows with retaining size or retaining window layout
         rotate windows of a column or row
       tabs
+        can vim open silent tabs?
         tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
         cycle from last tab straight to first and vis versa
       status lines for each window is a toggle
@@ -270,12 +303,12 @@ Workflow
       look into :new and the autocommands it executes
       :sview and :sfind
       look into conditional split commands p179 OREILLY
-      execute command on all windows with :windo 
+      execute command on all windows with :windo
       open tag or file (on path defined in option variable, path) in new window or tab
       close windows
         quit, close, hide, and close all others
           hidden option
-    customize vim stuff with env vars 
+    customize vim stuff with env vars
     edit multiple files
       vim f1.txt f2.txt ...
       see files with :args
@@ -285,14 +318,16 @@ Workflow
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
-    :tag command (look further into this) 
+    :tag command (look further into this)
     :tags shows list of tags that you have traversed through
     :tagselect shows instances of the same tag
     tag stacking
+      related to jump stack
     tags option defines where vim looks for tags
     compatible with etags
   copy to system clipboard from Vim
-    in gvim this is default I think? verify! 
+    system clipboard register is "* ?  verify this
+    in gvim this is default I think? verify!
   edit-compile-edit cycle with quick fix
     find out if this can be done in many languages, not just c
     compile from vim with :make filename
@@ -311,6 +346,11 @@ Workflow
       on first occurance of pattern
       on last line
     recovering edited buffers after crash
+      swap files
+      vim will try not to override swp files; it will name the next one swo then swn and so on
+      control when swp file gets written; 4 seconds or 200 chars is default
+      control where swp files are written; can be multiple files
+      preserve command will write to swp
     write to open file or any file by name or create new file and write to it
     write or append part of a file to a new file
     open a bunch of files in one session and switch between them on one screen
@@ -323,7 +363,26 @@ Workflow
       can you do a quiet open? where file goes into a new tab?
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
+      automatically backup files
+      specify location for backups with backupdir
+      backup, writebackup, backupcopy, backupdir, backupnext options
+      vim will add a ~ extension to backup files; manage the extension with backupext
+      patchmode?
+      difference between backup and write backup?
+      if you are in a write protected file and you don't want to loose changes just write to another file from vim with :write filename
     teach vim new filetypes based on unfamiliar file extensions (ex. let vim know that a .inc extension is a C file)
+    fileformats
+      this has to do with file formats with regards to end of line chars; unix is line feed, apple is return and dos is both
+      fileformats option manages this
+      vim auto detects unix,apple,dos file formats regarding the end of line chars and is able to read all formats
+      save a file in a different file format
+    control wether or not files end with and EOL char with endofline option
+    encryption
+      key option holds your encription key
+      encrypt an existing file or new file
+      vim encryption is weak
+    when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
+    remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
   command tab completion :e :h etc.
   vim diff
   Undo/redo
@@ -353,11 +412,9 @@ Workflow
     keep manually defined fold with :mkview and :loadview
   edit files remotely
     scp, ftp, sftp, http, dav, rcp
-  backups
-    automatically backup files
-    specify location for backups
-    backup, writebackup, backupcopy, backupdir, backupnext options
-  save session state 
+  edit files that contian a given word
+    vim `grep -l 'special-term' *`
+  save session state
     viminfo file
       managed by the viminfo option parameters
         save lines for each register up to n lines
@@ -391,6 +448,8 @@ Workflow
         unix end of line format
         window position on the screen
   quick command history reference with ctrl-f in commandline
+  configure vim to execute python, perl, tct, and probably more inside of vim
+  can make insert mode the default
 GUI
   wrap or no wrap for horizontal lines
     vim might shift lines left and right to make them fit? check this out
@@ -411,8 +470,8 @@ GUI
       customize syntax group coloring for specific file types by including it in an after script
         ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
         also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
-      create your own syntax file 
-        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax 
+      create your own syntax file
+        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax
     color test
   highlighting
     specific column(s)
@@ -424,17 +483,17 @@ GUI
   redraw screen Crl-l
   mode indicator
   show white space chars with :list
-  gvim 
+  gvim
     basic point click and scroll you expect
     gvimrc
     checkout scrollbars; customizing them; use of scroll bars with multiple windows
-    menus 
+    menus
       control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
       control order of items within menus
       control spacing between menu items
       make your own menus and menu items that execute vim commands
       tear off menues
-    toolbar 
+    toolbar
       treated similarly as a one dimentional menu
       uses bmp images as icons
       define tooltips for icons
@@ -443,7 +502,7 @@ GUI
       basic copy/pasting is compatible with System clipboard
     look into gvim specific options
   Run Unix commands from vim
-    :!command 
+    :!command
       is this technically filter?
       mix this with motion commands
     :sh
@@ -452,7 +511,7 @@ GUI
   show differences between two files
     vimdiff
     non unix vim versions come with a vim version of diff (unix of course uses the built in command)
-    diffexpr option defines replacement expression 
+    diffexpr option defines replacement expression
 Customization
   Vim script
     .vim scripts in vim runtime directories serve as good examples
@@ -468,7 +527,7 @@ Customization
       echo
       filetype detect
       exists
-    define functions 
+    define functions
       with/without args (can you use args?)
       call
     get function to call periodically
@@ -484,18 +543,22 @@ Customization
         sorting glosseries
         updating last mod time of the file
         changing tabwidth for different file types
-      can use comments 
+      can use comments
       use spaces in ex commands to make them more readable
     execute script based on time of day
-    everything you put in vimrc is technically vim script 
+    everything you put in vimrc is technically vim script
     Autocommands
-      execute arbitrary script on event happens 
+      execute arbitrary script on event happens
       decide which files will be subject to the autocmd script
       groups
       delete commands when they are no longer needed
         allows for dynamic changing of autocommands and which files they execute on
       can delete groups but make sure to delete all commands in group first
+      autocommands are by default not triggered by other autocommands but you can specify that they can be if you want
+      can choose to ignore events
     evaluating expressions (not only int math)
+    increment and decrement integers even in octal and hex form
+      nrformats manages which number formats are recognized
   Remapping keys
     remap command mode keys :map
     remap insert mode keys :map!
@@ -514,12 +577,13 @@ Regex support
   collating symbols [. .]
   equivalence classes [= =]
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
-  matching beggining and end of words (not a general regex thing? only vim thing?) 
+  matching beggining and end of words (not a general regex thing? only vim thing?)
   look into isident, iskeyword, isfname, magic, and isprint options
 Applied Vim to specific languages
   HTML
   Python
 Mouse compatability
+  behave option can help make mouse behavior more like the way you are use to
 Support
   Vim help files with tags
   vimtutor
@@ -528,9 +592,27 @@ Support
     keywordprog option defines progrm that is executed by K i.e. man in unix
     keywordprog can be modified for example to nothing, signaling vim to use :help
     the iskeyword option defines what K defines as a word
+    using vim to browse man pages is lame unless you run it through ul -i like this: man date | ul -i | vim; verify this
+      alternatively use vim substitute to fix; maybe rig it up in a autocmd; Oualline p 167
 Backwards compatible with vi
 Vim configurations when compiling Vim
-  
+Vim resources I need to check out and maybe provide
+  vi Lover's Home Page by Thomer M. Gil at http://www.thomer.com/vi/vi.html
+  Vi Pages by Sven Guckes at http://www.vi-editor.org
+  appendix A of O'REILLY
+    contians important info about command syntax structure
+    contains documentation of ex commands
+  appendix B of O'REILLY
+    contians documentation of some "most important" options
+  tutorial from unix world magazine by walter zintz
+    old url: http://www.networkcomputing.com/unixworld/tutorial/009/009.html
+Ways to access funcitonality
+  gui
+  command line args
+  options
+  ex commands
+  mouse
+
 \end{document}
 
 
