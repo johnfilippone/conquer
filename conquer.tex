@@ -84,7 +84,7 @@ read errors), special buffers (quickfix, help, directory, scratch), alternate fi
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
-what Vim puts in the registers (sometimes called buffers?)
+what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg
 switching between modes
 concept of a word and WORD p 184 of Oualline
   concept of how vim interprets filenames, identifies and printing characters is related
@@ -97,6 +97,7 @@ map overrides normal vim functionality
 order of initialization files like vimrc, exrc, etc.
 viminfo and retaining session state
 ctrl-Q and ctrl-S should be avoided in mappings because they are commands for the terminal to stop and start showing otuput; look into this
++cmd argument; command line argument for vim that starts file at a line number or first instance of a pattern like this: vim +97 file.txt; also works for some vim commands
 
 \section{Vim Capabilities}
 Writing text
@@ -178,6 +179,7 @@ Writing text
     set formatprg=fmt
   write in foreign languages including right to left languages, farsi and hebrew
     also other languages; maps keyboard to other language characters; need to look into how this is done more
+  insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
 Cursor Navigation
   hjkl
   search and find as a motion
@@ -206,6 +208,7 @@ Cursor Navigation
     see all marks with :marks
     special marks exist
     bookmarks are not stored in file; stored in session
+    global marks transend files within a vim session; what happens when combinging other commands with a motion to a global mark?
 Editing text
   substitutions (regex support)
     global
@@ -277,6 +280,7 @@ Searching
   jump to macro def
   display macro definition of macro under the cursor
   search for a word under the cursor in the current file an dany brought in by include directives: [CTRL-I, ]CTRL-I
+  search offset; change locaiton of cursor when finding a search result; i.e. /keyword/b2 will put the cursor on the y of keyword when that keyword is found
 Workflow
   Environment
     windows (splits)
@@ -390,6 +394,7 @@ Workflow
       by default undolevels is 1000
     undo by line
     repeat an edit (this is not redo; it is repeat edit)
+    repeat an insert with ctrl-A
     special tricks for repeating substitutions p80 of OREILLY
     undo/redo branching; see usr32.txt
   Folding
@@ -579,6 +584,7 @@ Regex support
   for substitution, regex works in search portion, some other constructs exist for the replacement portion
   matching beggining and end of words (not a general regex thing? only vim thing?)
   look into isident, iskeyword, isfname, magic, and isprint options
+  going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
 Applied Vim to specific languages
   HTML
   Python
