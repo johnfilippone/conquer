@@ -1,5 +1,4 @@
 \documentclass[12pt]{book}
-
 \title{Wrap Your Mind Around Vim 8.0}
 \author{John Filippone}
 
@@ -150,9 +149,16 @@ Writing text
     regular indenting
       use tab in insert mode
       tab over syntax or otherwise defined blocks through various methods
+      use command with number arg
+      use comparator chars
+      use ctrl-g and ctrl-t in insert mode
   inserting tabs vs spaces
     expandtab makes the TAB key insert spaces
     override this with CTRL-V before writing a tab (useful for Makefiles)
+    combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
+		control size of tabs
+		expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
+		shiftround will make vim always tab to a column that is a multiple of shiftwidth
   insert x amount of something at once i.e. 3iabcESC writes abcabcabc
   put from register
   auto text wrapping (instead of hitting enter)
@@ -249,6 +255,15 @@ Editing text
       useful for tables
       insert, append, replace, or change text to multiple lines on the same column
       indent blocks
+    repeat a visual selection with gv
+    move cursor between beggining and end of selection
+    write a sleection to a file
+    pipe selection through unix program like sort: select text then use !sort in normal mode (performs operation on lines whether or not you are using visual line mode
+    select mode
+      behaves more like what 'normal' editors do; backspace to del or type to del and replace
+      gh, gH, gctrl-h
+      use mouse to do select mode with selectmode option set to mouse?
+      can toggle between visual and select mode
   write right to left
   black hole register
   edit binary files -b
@@ -301,17 +316,19 @@ Workflow
         can vim open silent tabs?
         tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
         cycle from last tab straight to first and vis versa
+      split search; same as * command except does it in a new split window; ctrl-w ctrl-i
       status lines for each window is a toggle
       :[n]split [++opt] [+cmd] filename
       equalsalways option to always make new windows equal size
       look into :new and the autocommands it executes
-      :sview and :sfind
+      :sview and :sfind; and generally add s to a lot of commands to get them to do the same thing in a split window
       look into conditional split commands p179 OREILLY
       execute command on all windows with :windo
       open tag or file (on path defined in option variable, path) in new window or tab
       close windows
         quit, close, hide, and close all others
           hidden option
+      windows can have their own status line or not
     customize vim stuff with env vars
     edit multiple files
       vim f1.txt f2.txt ...
@@ -618,6 +635,7 @@ Ways to access funcitonality
   options
   ex commands
   mouse
+	modelines; comments that define options automatially p268 Oualline
 
 \end{document}
 
