@@ -75,7 +75,7 @@ If you are mystified by the terminology in this book, see the Vim Terminology se
 That section will also give you a general scope and sense of how Vim is structured.
 
 \section{Vim Terminology}
-Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
+Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual, operator pending), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax),
 set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only,
@@ -86,7 +86,7 @@ General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(num
 what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg
 switching between modes
 concept of a word and WORD p 184 of Oualline
-  concept of how vim interprets filenames, identifies and printing characters is related
+  concept of how vim interprets filenames, comments, identifies, definitions, and printing characters is related
 concept of an edit
 buffers
 tags priority and kind
@@ -168,6 +168,10 @@ Writing text
   registers hold anything, even edit commands
   registers hold read only metadata like filename
   create custom abbreviations for writing text with :ab
+    abbreviations can be mode specific like maps
+    can list abbreviations
+    use ctrl-c instead of esc key if you want to exit insert mode without completing abbreviations
+    noreabbreviation to avoid chains
   auto generate matching "" '' [] {} () HTML-tags etc.
   digraphs
     there are built in shortcuts for typing; just have to learn them
@@ -199,8 +203,13 @@ Cursor Navigation
     to column number with num prefix and |
     goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
     jump to matching or closest ( { [ and more with %
+      showmatch will make it so that when you close a matching pair cursor will do a quick jump to matching pair and jump back; kind of annoying if you ask me
+      can also jump to next or previous unmatched pair or conditional (if, else); kind of shady, test this out; vim can detect unbalanced matching but not which element is unmatched?
     to the nth percent of a file
     to the nth byte
+    to start or end of method
+    to next or prev { or }
+    to begining and end of comments
   scrolling
     automatic scroll as you type passed bottom
     scroll by screen or half screen
@@ -329,6 +338,9 @@ Workflow
         quit, close, hide, and close all others
           hidden option
       windows can have their own status line or not
+      bind the scrolling of two windows vertical and/or horizontal with scrollbind
+        look into syncbind as well
+      preview window
     customize vim stuff with env vars
     edit multiple files
       vim f1.txt f2.txt ...
@@ -358,6 +370,7 @@ Workflow
   rename refactor with vimgrep and quick fix
     p 283 O'REILLY
   automatically jump to compile error lines
+    look into redir command
   File management
     creating files
     opening/closing files
@@ -382,6 +395,10 @@ Workflow
       search thorugh dir like a normal vim file
       open file in split window
       can you do a quiet open? where file goes into a new tab?
+      edit file that is under cursor with gf which is same as :find filename
+        path option defines where vim looks for filenames
+      wildcard menu for comandline filename completion
+        siffixes option defines extensions that are given low priority in wildcard menu
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
       automatically backup files
@@ -404,6 +421,7 @@ Workflow
       vim encryption is weak
     when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
     remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
+    cd and pwd command mode commands
   command tab completion :e :h etc.
   vim diff
   Undo/redo
@@ -469,7 +487,7 @@ Workflow
         dir in which session file is located
         unix end of line format
         window position on the screen
-  quick command history reference with ctrl-f in commandline
+  quick command history reference with ctrl-f in commandline; full history with :history command; can set amount of remembered commands
   configure vim to execute python, perl, tct, and probably more inside of vim
   can make insert mode the default
 GUI
@@ -515,6 +533,8 @@ GUI
       control spacing between menu items
       make your own menus and menu items that execute vim commands
       tear off menues
+      make menues dependent on mode
+      special menu names "ToolBar" and "PopUp"
     toolbar
       treated similarly as a one dimentional menu
       uses bmp images as icons
@@ -523,6 +543,17 @@ GUI
       self installing executable
       basic copy/pasting is compatible with System clipboard
     look into gvim specific options
+    title bar string
+      make title bar say the name of the file being edited
+      also can manually set title bar
+      adjust max length of title bar string
+      can also manaage string in minimized window bar
+    customize mouse behavior
+      turn mouse on and of by mode
+      mouse mappings
+      double click time
+      turn off mouse pointer when typing
+    make select mode default over visual mode or choose toggle method
   Run Unix commands from vim
     :!command
       is this technically filter?
@@ -536,6 +567,7 @@ GUI
     diffexpr option defines replacement expression
 Customization
   Vim script
+    most common commands have one or two letter shortcuts; when using these in script makes them hard to read; instead you can use explicit commands like :copy and :delete for just about anything
     .vim scripts in vim runtime directories serve as good examples
     if/else
       inline, elseif and else are optional
@@ -582,10 +614,14 @@ Customization
     increment and decrement integers even in octal and hex form
       nrformats manages which number formats are recognized
   Remapping keys
-    remap command mode keys :map
-    remap insert mode keys :map!
+    map commands affect keys in one or more modes; operator pending mode comes in to play here with omap
     remap function keys that are mapped by the terminal (p.110 OREILLY) (look into this more)
-    looks deeper into which exact keys can be remapped
+      looks deeper into which exact keys can be remapped
+    chains of maps are possible but also preventable with noremap
+      can also set noremap option to make noremap the default behavior; might break some scripts!
+    unmap; takes only one arg and sets that arg to default functionality
+    remove all mappings with mapclear
+    list mappings with :map
   command combinations like ddp
   Macros (aka @-Functions)
   pre/post edit routines
@@ -594,6 +630,12 @@ Customization
     .viminfo for session context
     can define scripts that run when exiting buffers
     pre and post scripts run automatically when switching buffers in the same session
+  customize how vim defines constructs
+    sentence, paragraph, word, WORD, comment, filename, identifiers, keywords, matchingpairs, definitions, includes, errorformat
+  customize how indent events are triggered
+    cinwords, cinkeys, cinoptions
+  customize :make command
+  choose binary or linier search for grep
 Regex support
   character classes [: :]
   collating symbols [. .]
