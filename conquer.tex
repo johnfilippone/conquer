@@ -535,6 +535,7 @@ GUI
       tear off menues
       make menues dependent on mode
       special menu names "ToolBar" and "PopUp"
+      noremap menu mappings
     toolbar
       treated similarly as a one dimentional menu
       uses bmp images as icons
@@ -554,6 +555,11 @@ GUI
       double click time
       turn off mouse pointer when typing
     make select mode default over visual mode or choose toggle method
+    invoke certain dialog boxes with commands instead of menu items
+    confirmation dialog boxes when action will delete data
+    browse options; badass; must write about this; maybe display the browse options menu in the book; allows you to browse an organized list of options, see defs and toggle; :browse set
+    set font with guifont; set guifont=* will bring up a menu of fonts to choose from
+    change style of the cursor
   Run Unix commands from vim
     :!command
       is this technically filter?
@@ -571,19 +577,59 @@ Customization
     .vim scripts in vim runtime directories serve as good examples
     if/else
       inline, elseif and else are optional
+    while
     datetime support
     variables
       optionally explicitly define variable scope
+      handle strings and ints
+      literal string with single quote or simple string with double; simple expands escape characters, literal string does not
+      special variables for env vars, registers, etc
+      built in vim variables
+      ints can be decimal, octal, or hex, (or binary?)
+      can delete variables
+    comparisons
+      can do basic boolean comparisons on ints and strings
+      can check if string matches regex with comparison; string =~ regex or the compliment: string !~ regex
+      ignorecase string comparision
+        to ignore add ? (i.e. ==?); must match case: add hashtag
+        default string compare honors ignorecase option
+    enter filenames dynamically
+      file name under cursor, curretn file, alt file, lots more
+      modify that filename by adding/removing abs path, get extension etc.
+      to experiment:
+        put cursor over the name of a file
+        :echo expand("<cfile>:p")
+        this will echo the abs path of the file under the cursor
+        this could be pretty powerful..look more into applications of this
     concatinate with .
     built in functions
-      look into help file usr41.txt(has underscore after usr but tex hates it) for details on over 200 built in functions
+      look into help file usr41.txt(has underscore after usr but tex hates it) for details on over 200 built in functions;
       execute
       echo
+        can also echo in color
       filetype detect
       exists
+      confirm; dialog boxes wow cool such gui
     define functions
-      with/without args (can you use args?)
+      with/without args
       call
+      return
+      if you define a function that already exists you will get an error but you can override it with function! FuncNameThatAlreadyExists
+      range functions?
+      function FuncName() abort will define a func that aborts on fist error
+      function FuncName(start, ...) means it reqires one arg and can have up to 20 more stored in a:1, a:2, etc; a:0 is the count of extra args
+      list user def functions with :function
+      can delete functions
+    defind command mode commands
+      kind of like mapping for command mode; must start with capital letter
+      list user def commands with :command
+      can clear user def commands
+      can take arguments
+        predetermined number
+        0 or 1
+        any number
+        one or more
+        range; look in to what it means to have a range argument???
     get function to call periodically
       statusline trick p.202 of O'REILLY
       better way?
@@ -610,13 +656,14 @@ Customization
       can delete groups but make sure to delete all commands in group first
       autocommands are by default not triggered by other autocommands but you can specify that they can be if you want
       can choose to ignore events
-    evaluating expressions (not only int math)
+    evaluating expressions (not only int math?)
+      add, mult, sub, int div, mod, negation
     increment and decrement integers even in octal and hex form
       nrformats manages which number formats are recognized
   Remapping keys
     map commands affect keys in one or more modes; operator pending mode comes in to play here with omap
     remap function keys that are mapped by the terminal (p.110 OREILLY) (look into this more)
-      looks deeper into which exact keys can be remapped
+      looks deeper into which exact keys can be remapped; look into the ability to map alt key, p344 Oualline says it can be done on gui
     chains of maps are possible but also preventable with noremap
       can also set noremap option to make noremap the default behavior; might break some scripts!
     unmap; takes only one arg and sets that arg to default functionality
