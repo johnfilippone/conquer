@@ -79,7 +79,7 @@ Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual, operat
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax),
 set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only,
-read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files
+read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files, status line
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -97,6 +97,11 @@ order of initialization files like vimrc, exrc, etc.
 viminfo and retaining session state
 ctrl-Q and ctrl-S should be avoided in mappings because they are commands for the terminal to stop and start showing otuput; look into this
 +cmd argument; command line argument for vim that starts file at a line number or first instance of a pattern like this: vim +97 file.txt; also works for some vim commands
+concept of setting options and maybe an organized overview; sufixes ? and (ampersan) and prefix no;
+  options are boolean, numeric, string-related,
+    +=, -=, and carrot= for string option values
+    can reset all to default with :set all(ampersan)
+    set multiple options in one line
 
 \section{Vim Capabilities}
 Writing text
@@ -243,7 +248,9 @@ Editing text
     use ex commands or vi commands to save content to register (or just regular yank) then put (lose undo history when switch between files; use tabs instead)
     read command will copy a full file into the file you are editing
   copy/paste with basic point right lick method
-    when smart indenting is on this can result in the progressivly cascading indent problem; solve with set paste?  look into this
+    when smart indenting is on this can result in the progressivly cascading indent problem;
+      solve with set paste?  look into this; paste is a shorthand for setting a bunch of other options
+      if you use this you can use a pastetoggle key to switch in and out of paste mode quickly
   transpose characters (xp)
   join lines
     joinspaces option will put two spaces in between sentences when joining
@@ -399,6 +406,7 @@ Workflow
         path option defines where vim looks for filenames
       wildcard menu for comandline filename completion
         siffixes option defines extensions that are given low priority in wildcard menu
+        look into wildmode
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
       automatically backup files
@@ -571,6 +579,13 @@ GUI
     vimdiff
     non unix vim versions come with a vim version of diff (unix of course uses the built in command)
     diffexpr option defines replacement expression
+  showcmd
+  vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
+  if it is a thing, you can probably customize it
+  errorbells and visualbells
+  format status line
+    customize reporting changes with report
+  customize chars list mode uses with listchars
 Customization
   Vim script
     most common commands have one or two letter shortcuts; when using these in script makes them hard to read; instead you can use explicit commands like :copy and :delete for just about anything
@@ -683,6 +698,8 @@ Customization
     cinwords, cinkeys, cinoptions
   customize :make command
   choose binary or linier search for grep
+  verbose option so you can see what vim is doing under the hood
+    there are clearly defined levels for this Oualline 402
 Regex support
   character classes [: :]
   collating symbols [. .]
