@@ -13,14 +13,6 @@ not effective, you can remap keys or write scripts to get the same functionality
 2. section on how to learn and practice effectively.
 Use the vim help files and the internet.
 Integrate a few commands at a time take it slow at first, think of the most efficient way before you make an edit.
-3. Basic ways to use features
-Ways to access funcitonality
-  gui
-  command line args
-  options
-  ex commands
-  mouse
-	modelines; comments that define options automatially p268 Oualline
 
 \section{Purpose}
 The object of this book is to help the Vim user efficiently learn the tool by enumerating the vast capabilites of Vim 8.0 concisly and simply.
@@ -120,216 +112,324 @@ Regex support
   matching beggining and end of words (not a general regex thing? only vim thing?)
   look into isident, iskeyword, isfname, magic, and isprint options
   going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
+Basic ways to use features
+  gui
+  command line args
+  options
+  ex commands
+  mouse
+	modelines; comments that define options automatially p268 Oualline
 
 \section{Vim Capabilities}
-Writing text
-  basic insert/append
-    start inserting at nifty places
-      end of line
-      start of line; this can be first non blank char or first column regardless if it is blank
-      beggining of new line above or below
-      smart indenting
-        :set autoindent (next line starts on same indent level on enter)
-        indent in insert mode ctrl-t and ctrl-d
-        automatically insert leading comment characters when writing a comment that exceeds length of line defined by wrapmargin or textwidth
-        audoindent and smartindent
-        cindent
-          probably best for most programmers
-          customization
-            cinkeys: keys that trigger a reevaluation of indenting
-            cinoptions: customizes a lot of the syntax related indenting behavior; look more into this
-            cinwords: words that trigger a reevaluation of indenting (case sensitive regardless of ignorecase option)
-        indentexpr
-          defines an expression that is evaluated each time a new line is created in a file
-          the expression evaluates to a number of indents for that line
-          scripts exist in VIMRUNTIME for most languages already; use 'filetype plugin indent on' to use the appropriate one based on filetype
-      regular indenting
-        use tab in insert mode
-        tab over syntax or otherwise defined blocks through various methods
-        use command with number arg
-        use comparator chars
-        use ctrl-g and ctrl-t in insert mode
-    insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
-    insert x amount of something at once i.e. 3iabcESC writes abcabcabc
-  completion
-    whole line
-    current file keywords
-    dictionary option keywords
-      initially dictionary option is empty; must add a dictionary file or multiple
-    thesaurus option keywords
-      initially thesaurus option is empty; must add a thesaurus file or multiple
-      can search multiple thesauruses
-      possible to use a programming thesaurus i.e. retrieve getchar getcwd get direntries getenv getgrent
-      can get info in the pop up menu about which thesaurus each suggestion comes from
-    current and included file keywords
-    tags (ctags)
-    filenames
-      searches only current directory
-    macros
-      sleep command can be useful for pausing macro execution
-    vim command completion (useful for developing scripts)
-    user-defined through completefunc option
-    omni-completion
-      available for c, css, html, javascript, php, python, ruby, sql, xml, maybe more by now
-    spelling suggestions
-    generic complete with ctrl-N
-      this does potentially all the other complete methods all in one
-      the exact complete methods used are defined by the complete option
-    where vim searhes for words is managed by complete option
-    path option defines where vim looks for files
-    abreviations
-      create custom abbreviations for writing text with :ab
-      abbreviations can be mode specific like maps
-      can list abbreviations
-      use ctrl-c instead of esc key if you want to exit insert mode without completing abbreviations
-      noreabbreviation to avoid chains
-    auto generate matching "" '' [] {} () HTML-tags etc.
+Editing text
+  basic edits
+    change
+    delete
+    insert
+    substitute
+    append
+    yank
+    put
+    move
+    join
+      join lines
+        joinspaces option will put two spaces in between sentences when joining
+    global edits
+      deletes, moves, and copies with :g and ex commands
+      move blocks of text
+        with :g command and pattern matching (helpful if applies to tons of instances in same file hense :g)
+    basic edit combos
+      transpose characters (xp)
+      transpose lines (ddp)
+    ex commands (maybe don't need this section)
+      usually only useful when need to do something specific everywhere; otherwise there are easier ways to do things
+      still useful to at least be aware of the way ex works and can be accessed in vim
+      vim allows for extreme flexibility with pattern matching and basic move, copy, delete commands; one must open thier mind to these possiblities when faced with a huge repetative task
+      it may be solved with one well-formed, probably long ex command
+      nice examples on p84 of OREILLY
+    select text with Visual mode to perform an edit on it
+      select with any vim cursor navigation technique
+      select word, sentence, or paragraph that the cursor is in; ex. 4aw selects 4 words when in Visual mode
+      select lines
+      slect blocks (can't do this in your average gui editor)
+        useful for tables
+        insert, append, replace, or change text to multiple lines on the same column
+        indent blocks
+      repeat a visual selection with gv
+      move cursor between beggining and end of selection
+      write a sleection to a file
+      pipe selection through unix program like sort: select text then use !sort in normal mode (performs operation on lines whether or not you are using visual line mode
+      select mode
+        behaves more like what 'normal' editors do; backspace to del or type to del and replace
+        gh, gH, gctrl-h
+        use mouse to do select mode with selectmode option set to mouse?
+        can toggle between visual and select mode
+    combine edits with motions
+  Insertions
+    basic insert/append
+      start inserting at nifty places
+        end of line
+        start of line; this can be first non blank char or first column regardless if it is blank
+        beggining of new line above or below
+        smart indenting
+          :set autoindent (next line starts on same indent level on enter)
+          indent in insert mode ctrl-t and ctrl-d
+          automatically insert leading comment characters when writing a comment that exceeds length of line defined by wrapmargin or textwidth
+          audoindent and smartindent
+          cindent
+            probably best for most programmers
+            customization
+              cinkeys: keys that trigger a reevaluation of indenting
+              cinoptions: customizes a lot of the syntax related indenting behavior; look more into this
+              cinwords: words that trigger a reevaluation of indenting (case sensitive regardless of ignorecase option)
+          indentexpr
+            defines an expression that is evaluated each time a new line is created in a file
+            the expression evaluates to a number of indents for that line
+            scripts exist in VIMRUNTIME for most languages already; use 'filetype plugin indent on' to use the appropriate one based on filetype
+        regular indenting
+          use tab in insert mode
+          tab over syntax or otherwise defined blocks through various methods
+          use command with number arg
+          use comparator chars
+          use ctrl-g and ctrl-t in insert mode
+      insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
+      insert x amount of something at once i.e. 3iabcESC writes abcabcabc
+    completion
+      whole line
+      current file keywords
+      dictionary option keywords
+        initially dictionary option is empty; must add a dictionary file or multiple
+      thesaurus option keywords
+        initially thesaurus option is empty; must add a thesaurus file or multiple
+        can search multiple thesauruses
+        possible to use a programming thesaurus i.e. retrieve getchar getcwd get direntries getenv getgrent
+        can get info in the pop up menu about which thesaurus each suggestion comes from
+      current and included file keywords
+      tags (ctags)
+      filenames
+        searches only current directory
+      macros
+        sleep command can be useful for pausing macro execution
+      vim command completion (useful for developing scripts)
+      user-defined through completefunc option
+      omni-completion
+        available for c, css, html, javascript, php, python, ruby, sql, xml, maybe more by now
+      spelling suggestions
+      generic complete with ctrl-N
+        this does potentially all the other complete methods all in one
+        the exact complete methods used are defined by the complete option
+      where vim searhes for words is managed by complete option
+      path option defines where vim looks for files
+      abreviations
+        create custom abbreviations for writing text with :ab
+        abbreviations can be mode specific like maps
+        can list abbreviations
+        use ctrl-c instead of esc key if you want to exit insert mode without completing abbreviations
+        noreabbreviation to avoid chains
+      auto generate matching "" '' [] {} () HTML-tags etc.
+    special characters
+      digraphs
+        there are built in shortcuts for typing; just have to learn them
+    comments
+      easily generate box outlines for box comments with abreviations
+      maybe us external program, boxes, to make comment boxes
+      auto wrap comments
+        this means when you are writing a comment, the editor will automatically input the comment leader on the next line
+        does this work for languages other than c?
+        managed by formatoptions option
+      comment and uncomment blocks easily with block visual mode
+    write in foreign languages including right to left languages, farsi and hebrew
+      also other languages; maps keyboard to other language characters; need to look into how this is done more
+      write right to left
   inserting tabs vs spaces
     expandtab makes the TAB key insert spaces
     override this with CTRL-V before writing a tab (useful for Makefiles)
     combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
-		control size of tabs
-		expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
-		shiftround will make vim always tab to a column that is a multiple of shiftwidth
-  special characters
-    digraphs
-      there are built in shortcuts for typing; just have to learn them
+    control size of tabs
+    expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
+    shiftround will make vim always tab to a column that is a multiple of shiftwidth
+  substitutions (regex support)
+    global
+    by line(s)
+    confirmation
+    context aware substitue
+    change and all of its variations: cw, cb, c2b, c0, C, etc
+    replace
+      type over existing text
   copy/paste
     put from register
       registers hold anything, even edit commands
       registers hold read only metadata like filename
     read command
       !sort filter (:r !sort file-that-needs-sorting)
-  comments
-    easily generate box outlines for box comments with abreviations
-    maybe us external program, boxes, to make comment boxes
-    auto wrap comments
-      this means when you are writing a comment, the editor will automatically input the comment leader on the next line
-      does this work for languages other than c?
-      managed by formatoptions option
-    comment and uncomment blocks easily with block visual mode
-  write in foreign languages including right to left languages, farsi and hebrew
-    also other languages; maps keyboard to other language characters; need to look into how this is done more
-Cursor Navigation
-  hjkl
-  search and find as a motion
-  moving vertically through wrapped line
-  searching
-  by word, sentence, paragraph, and section (can set different macros for identifying paragraphs, and sections)
-  beggining/end of line
-  moving to first non black char of line
-  jump/goto
-    to line by number (G or goto command)
-    to column number with num prefix and |
-    goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
-    jump to matching or closest ( { [ and more with %
-      showmatch will make it so that when you close a matching pair cursor will do a quick jump to matching pair and jump back; kind of annoying if you ask me
-      can also jump to next or previous unmatched pair or conditional (if, else); kind of shady, test this out; vim can detect unbalanced matching but not which element is unmatched?
-    to the nth percent of a file
-    to the nth byte
-    to start or end of method
-    to next or prev { or }
-    to begining and end of comments
-  scrolling
-    automatic scroll as you type passed bottom
-    scroll by screen or half screen
-    scroll by line with cursor in place
-    scroll relative to cursor (zENTER, z., z-)
-    scroll relative to any line (same as z with numeric prefix)
-    scroll specified amount specified by scroll option
-    control amount of scroll when cursor moving toward the edge of the screen
-  return to previous cursor position
-  save and goto invisible bookmark  called mark
-    see all marks with :marks
-    special marks exist
-    bookmarks are not stored in file; stored in session
-    global marks transend files within a vim session; what happens when combinging other commands with a motion to a global mark?
-Editing text
-  substitutions (regex support)
-    global
-    by line(s)
-    confirmation
-    context aware substitue
-  global deletes, moves, and copies with :g and ex commands
-  deletion command and all variations
-  yank and put
-  replace
-    change and all of its variations: cw, cb, c2b, c0, C, etc
-    type over existing text
+    copy/paste within a single file
+      yank or delete into reg then put from reg
+    copy/paste between files
+      use ex commands or vi commands to save content to register (or just regular yank) then put (lose undo history when switch between files; use tabs instead)
+      read command will copy a full file into the file you are editing
+    copy/paste with basic point right lick method
+      when smart indenting is on this can result in the progressivly cascading indent problem;
+        solve with set paste?  look into this; paste is a shorthand for setting a bunch of other options
+        if you use this you can use a pastetoggle key to switch in and out of paste mode quickly
   toggle upper/lower case
-  copy/paste within a single file
-    yank or delete into reg then put from reg
-  copy/paste between files
-    use ex commands or vi commands to save content to register (or just regular yank) then put (lose undo history when switch between files; use tabs instead)
-    read command will copy a full file into the file you are editing
-  copy/paste with basic point right lick method
-    when smart indenting is on this can result in the progressivly cascading indent problem;
-      solve with set paste?  look into this; paste is a shorthand for setting a bunch of other options
-      if you use this you can use a pastetoggle key to switch in and out of paste mode quickly
-  transpose characters (xp)
-  join lines
-    joinspaces option will put two spaces in between sentences when joining
-  move blocks of text
-    with :g command and pattern matching (helpful if applies to tons of instances in same file hense :g)
-  ex commands
-    usually only useful when need to do something specific everywhere; otherwise there are easier ways to do things
-    still useful to at least be aware of the way ex works and can be accessed in vim
-    vim allows for extreme flexibility with pattern matching and basic move, copy, delete commands; one must open thier mind to these possiblities when faced with a huge repetative task
-    it may be solved with one well-formed, probably long ex command
-    nice examples on p84 of OREILLY
-  filter text in file through Unix commands
-  select text with Visual mode to perform an edit on it
-    select with any vim cursor navigation technique
-    select word, sentence, or paragraph that the cursor is in; ex. 4aw selects 4 words when in Visual mode
-    select lines
-    slect blocks (can't do this in your average gui editor)
-      useful for tables
-      insert, append, replace, or change text to multiple lines on the same column
-      indent blocks
-    repeat a visual selection with gv
-    move cursor between beggining and end of selection
-    write a sleection to a file
-    pipe selection through unix program like sort: select text then use !sort in normal mode (performs operation on lines whether or not you are using visual line mode
-    select mode
-      behaves more like what 'normal' editors do; backspace to del or type to del and replace
-      gh, gH, gctrl-h
-      use mouse to do select mode with selectmode option set to mouse?
-      can toggle between visual and select mode
-  write right to left
-  black hole register
+  editing with unix commands
+    filter text in file through Unix commands
+    Run Unix commands from vim
+      :!command
+        is this technically filter?
+        mix this with motion commands
+      :sh
+      read output of unix command directly into file (:r !command)
+  alphanumeric sort lines
   edit binary files -b
-  delete up until predefined mark
-  conifgure backspace key with backspace option
-  justify text so that it looks nice; i.e. put line breaks in nice places automatically
-    VIRUNTIME/macros/justify.vim
-    gq does it
-    gqmotion also works i.e. useful with paragraph motion
-    gqip will do it to the paragraph from inside the paragraph instead of having to be on the first line or first char of paragraph
-  align text; left right center
-    :1,5 right 30
-    30 is the width so text will align right to column 30
-  rot13 encrypt with g??
+  formatting
+    justify text so that it looks nice; i.e. put line breaks in nice places automatically
+      VIRUNTIME/macros/justify.vim
+      gq does it
+      gqmotion also works i.e. useful with paragraph motion
+      gqip will do it to the paragraph from inside the paragraph instead of having to be on the first line or first char of paragraph
+    align text; left right center
+      :1,5 right 30
+      30 is the width so text will align right to column 30
+    use unix program fmt for formating
+      set formatprg=fmt
   edit a bunch of files the same way
     batch file i.e. a vim script containing a set of commands that you can run on a file from the unix command line
-  alphanumeric sort lines
-  use unix program fmt for formating
-    set formatprg=fmt
+  encryption
+    rot13 encrypt with g??
+Cursor Navigation
+  motions
+    hjkl
+    moving vertically through wrapped line
+    search and find as a motion
+    by word, sentence, paragraph, and section (can set different macros for identifying paragraphs, and sections)
+    beggining/end of line
+    moving to first non black char of line
+    jump/goto
+      to line by number (G or goto command)
+      to column number with num prefix and |
+      goto top, middle, or bottom line on screen (H, M, L) num prefix to go x lines away from top or bottom
+      jump to matching or closest ( { [ and more with %
+        showmatch will make it so that when you close a matching pair cursor will do a quick jump to matching pair and jump back; kind of annoying if you ask me
+        can also jump to next or previous unmatched pair or conditional (if, else); kind of shady, test this out; vim can detect unbalanced matching but not which element is unmatched?
+      to the nth percent of a file
+      to the nth byte
+      to start or end of method
+      to next or prev { or }
+      to begining and end of comments
+    scrolling
+      automatic scroll as you type passed bottom
+      scroll by screen or half screen
+      scroll by line with cursor in place
+      scroll relative to cursor (zENTER, z., z-)
+      scroll relative to any line (same as z with numeric prefix)
+      scroll specified amount specified by scroll option
+      control amount of scroll when cursor moving toward the edge of the screen
+    return to previous cursor position
+    save and goto invisible bookmark called mark
+      see all marks with :marks
+      special marks exist
+      bookmarks are not stored in file; stored in session
+      global marks transend files within a vim session; what happens when combinging other commands with a motion to a global mark?
+    search as a motion
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
   automatically search word under the cursor
   highlighting of search terms
   quick scrolling through search results
-  combine search as motion command with c d p y
   find
   case sensitive option
   incremental search :set incsearch
-  search history with arrow keys
+  scroll through search history with arrow keys
   search for def of variable (local or global scope)
   jump to macro def
   display macro definition of macro under the cursor
-  search for a word under the cursor in the current file an dany brought in by include directives: [CTRL-I, ]CTRL-I
+  search for a word under the cursor in the current file and any brought in by include directives: [CTRL-I, ]CTRL-I
   search offset; change locaiton of cursor when finding a search result; i.e. /keyword/b2 will put the cursor on the y of keyword when that keyword is found
+GUI
+  wrap or no wrap for horizontal lines
+    vim might shift lines left and right to make them fit? check this out
+    slidescroll option limits such shifting
+    sidescrolloff option may also be useful
+    listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
+    auto text wrapping (instead of hitting enter)
+  left/right scrolling?
+  folding
+  Color
+    syntax highlighting (filetype detection beyond extension name)
+      syntax defining files are in VIMRUNTIME/syntax
+    column coloring
+    colorschemes
+      I recommend base16-3024
+      customize with colorscheme, hightlight, and background options
+      redefine coloring for syntax groups with highlight command
+      :highlight will show you all coloring for all syntax groups
+      customize syntax group coloring for specific file types by including it in an after script
+        ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
+        also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
+      create your own syntax file
+        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax
+    color test
+  highlighting
+    specific column(s)
+    search terms
+    matching { [ ( etc.
+  line numbering
+    normal numbers
+    relative numbers
+  redraw screen Crl-l
+  mode indicator
+  show white space chars with :list
+  gvim
+    basic point click and scroll you expect
+    gvimrc
+    checkout scrollbars; customizing them; use of scroll bars with multiple windows
+    menus
+      control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
+      control order of items within menus
+      control spacing between menu items
+      make your own menus and menu items that execute vim commands
+      tear off menues
+      make menues dependent on mode
+      special menu names "ToolBar" and "PopUp"
+      noremap menu mappings
+    toolbar
+      treated similarly as a one dimentional menu
+      uses bmp images as icons
+      define tooltips for icons
+    Windows gvim
+      self installing executable
+      basic copy/pasting is compatible with System clipboard
+    look into gvim specific options
+    title bar string
+      make title bar say the name of the file being edited
+      also can manually set title bar
+      adjust max length of title bar string
+      can also manaage string in minimized window bar
+    customize mouse behavior
+      turn mouse on and of by mode
+      mouse mappings
+      double click time
+      turn off mouse pointer when typing
+    make select mode default over visual mode or choose toggle method
+    invoke certain dialog boxes with commands instead of menu items
+    confirmation dialog boxes when action will delete data
+    browse options; badass; must write about this; maybe display the browse options menu in the book; allows you to browse an organized list of options, see defs and toggle; :browse set
+    set font with guifont; set guifont=* will bring up a menu of fonts to choose from
+    change style of the cursor
+  convert files to html with :TOhtml command
+  vimdiff gui
+    execute vimdiff from commandline
+    non unix vim versions come with a vim version of diff (unix of course uses the built in command)
+    diffexpr option defines replacement expression
+  showcmd
+  vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
+  errorbells and visualbells
+  format status line
+    customize reporting changes with report
+  list mode
+    customize chars list mode uses with listchars
 Workflow
   ga will show you ascii number or char under cursor
   Backwards compatible with vi
@@ -520,96 +620,9 @@ Workflow
   quick command history reference with ctrl-f in commandline; full history with :history command; can set amount of remembered commands
   configure vim to execute python, perl, tct, and probably more inside of vim
   can make insert mode the default
-GUI
-  wrap or no wrap for horizontal lines
-    vim might shift lines left and right to make them fit? check this out
-    slidescroll option limits such shifting
-    sidescrolloff option may also be useful
-    listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
-  left/right scrolling?
-  folding
-  Color
-    syntax highlighting (filetype detection beyond extension name)
-      syntax defining files are in VIMRUNTIME/syntax
-    column coloring
-    colorschemes
-      I recommend base16-3024
-      customize with colorscheme, hightlight, and background options
-      redefine coloring for syntax groups with highlight command
-      :highlight will show you all coloring for all syntax groups
-      customize syntax group coloring for specific file types by including it in an after script
-        ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
-        also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
-      create your own syntax file
-        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax
-    color test
-  highlighting
-    specific column(s)
-    search terms
-    matching { [ ( etc.
-  line numbering
-    normal numbers
-    relative numbers
-  redraw screen Crl-l
-  mode indicator
-  show white space chars with :list
-  gvim
-    basic point click and scroll you expect
-    gvimrc
-    checkout scrollbars; customizing them; use of scroll bars with multiple windows
-    menus
-      control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
-      control order of items within menus
-      control spacing between menu items
-      make your own menus and menu items that execute vim commands
-      tear off menues
-      make menues dependent on mode
-      special menu names "ToolBar" and "PopUp"
-      noremap menu mappings
-    toolbar
-      treated similarly as a one dimentional menu
-      uses bmp images as icons
-      define tooltips for icons
-    Windows gvim
-      self installing executable
-      basic copy/pasting is compatible with System clipboard
-    look into gvim specific options
-    title bar string
-      make title bar say the name of the file being edited
-      also can manually set title bar
-      adjust max length of title bar string
-      can also manaage string in minimized window bar
-    customize mouse behavior
-      turn mouse on and of by mode
-      mouse mappings
-      double click time
-      turn off mouse pointer when typing
-    make select mode default over visual mode or choose toggle method
-    invoke certain dialog boxes with commands instead of menu items
-    confirmation dialog boxes when action will delete data
-    browse options; badass; must write about this; maybe display the browse options menu in the book; allows you to browse an organized list of options, see defs and toggle; :browse set
-    set font with guifont; set guifont=* will bring up a menu of fonts to choose from
-    change style of the cursor
-  Run Unix commands from vim
-    :!command
-      is this technically filter?
-      mix this with motion commands
-    :sh
-    read output of unix command directly into file (:r !command)
-  convert files to html with :TOhtml command
-  show differences between two files
-    vimdiff
-    non unix vim versions come with a vim version of diff (unix of course uses the built in command)
-    diffexpr option defines replacement expression
-  showcmd
-  vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
-  if it is a thing, you can probably customize it
-  errorbells and visualbells
-  format status line
-    customize reporting changes with report
-  customize chars list mode uses with listchars
-  auto text wrapping (instead of hitting enter)
 Customization
+  if it is a thing, you can probably customize it
+  conifgure backspace key with backspace option
   Vim configurations when compiling Vim
   Vim script
     most common commands have one or two letter shortcuts; when using these in script makes them hard to read; instead you can use explicit commands like :copy and :delete for just about anything

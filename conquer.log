@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  15 MAY 2017 19:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  16 MAY 2017 15:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -46,31 +46,34 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \vbox (badness 3138) has occurred while \output is active []
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ [2]
+[3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 61.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
- [4] [5] [6] [7]
-[8] [9] [10] [11] [12] [13] [14]
-Overfull \hbox (10.14862pt too wide) in paragraph at lines 741--751
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
+ [4] [5] [6]
+[7] [8] [9] [10] [11] [12] [13] [14]
+Overfull \hbox (10.14862pt too wide) in paragraph at lines 754--764
 \OT1/cmr/m/n/12 old url: http://www.networkcomputing.com/unixworld/tutorial/009
 /009.html 
  []
 
-[15] (./conquer.aux) )
+[15] [16] (./conquer.aux) )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 549 ({)
-### simple group (level 1) entered at line 225 ({)
+### simple group (level 2) entered at line 377 ({)
+### simple group (level 1) entered at line 312 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  256 strings out of 493029
  2871 string characters out of 6136235
- 129246 words of memory out of 5000000
+ 131496 words of memory out of 5000000
  3870 multiletter control sequences out of 15000+600000
  6365 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -80,10 +83,10 @@ mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on conquer.pdf (15 pages, 105376 bytes).
+Output written on conquer.pdf (16 pages, 105632 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
