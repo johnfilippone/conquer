@@ -15,30 +15,33 @@ Use the vim help files and the internet.
 Integrate a few commands at a time take it slow at first, think of the most efficient way before you make an edit.
 
 \section{Purpose}
-The object of this book is to help the Vim user efficiently learn the tool by enumerating the vast capabilites of Vim 8.0 concisly and simply.
+The object of this book is to help new and veteran Vim users efficiently learn the tool by providing a full and concise enumeration of the vast capabilites of Vim 8.0.
 
 \section{Important Historical Perspective}
-When Vim was created, it was made by Bram for Bram, meaning: the engineer who developed Vim initially, developed it for his personal use.
+When Vim was created, it was made by Bram for Bram; meaning, the engineer who developed Vim did so for his personal use.
 He developed the features that he personally wanted to use.
 As years went on and Bram continued developing, the community asked for other features that Bram did not necessarily care about.
 He implemented them anyway as long as he felt enough people would enjoy having them.
 After decades of development, Vim has become a vast collection of features.
 There are too many for any one person to really need or want or use them all.
-The vast set of features is meant to accomodate a vast set of users where each user only needs and/or wants a small subset of all features.
+The expansive collection of features is meant to accomodate a diverse set of users where each user only needs and/or wants a small subset of all features to achieve their ideal workflow.
 It is for this reason that this book focues on efficient learning of Vim rather than complete learning.
 Getting the maximum utility from Vim on your particular workflow does not require you to know how to use all the features but rather only 5-10 percent of them.
 
 \section{This Book's Unique Approach}
 This is not a 'HOW to use Vim' book.
-It is more of a 'this is WHAT Vim can do; now that you know what is possible and what the features are technically called, you can easily learn how to use only the features of Vim
-that you actually care about on your own' book.
+Instead this book focuses on teaching WHAT Vim can do.
 The approach of this book is based on the premise that learning HOW to use a particular feature in Vim is easy; the hard part is figureing out the WHAT feature you want to learn.
+Because Vim is such an extensively customizable tool, the HOW of a feature is not particularly important when it comes to achieving efficient workflow.
+If the default invocation of a feature does not work for you, there is almost definitely a way to change the invocation to something that does work.
+Any how-to elements of this book will be minimal for the sake of brevity.
+This book will instead into detail on the WHAT is possible in Vim and WHAT the proper terminology is.
 Once you know what the thing you want to do is and what it is called, all it takes some internet searching and some practice.
 This is the most efficient approach because it allows you to avoid leaning HOW to use features you don't need or want.
 After reading this book you will have effectively wrapped your mind around Vim.
 You will have a strong understanding of all the moving parts and which features exist.
 Armed with that understanding you can quickly learn the features you need for your particular workflow.
-More importantly, the next time your workflow changes, your knowledge of Vim will allow you to quickly assess wether or not Vim is the tool for the job and what to look for.
+More importantly, the next time your workflow changes, your knowledge of Vim will allow you to quickly assess wether or not Vim is the tool for the job and you will know what to look for.
 
 \section{How Most People Learn Vim}
 Most people are thrust into Vi and/or Vim and are forced to frantically learn the basic editing commands.
@@ -49,8 +52,8 @@ Unfortunately, most books for Vim are recipe books.
 They provide tutorial on specific features or describe great ways to solve common problems with Vim.
 These are great for picking up tricks but you will brush through hundreds of pages before learning the key set of Vim features that work best for you and the task you are applying them to.
 Most will try these 'HOW to' approaches, then quickly give up on them and default to being satified with a cumbersome workflow.
-The internet can be very helpful if you know what you are looking for as long as you don't fall into a wormhole of the extremely mystifying power-user language.
-The weird dialog about buffers and Ex-mode etc. is easy enough for you to sift through but the real trouble is the former.
+The internet can be very helpful if you know what you are looking for as long as you don't fall into a wormhole of mystifying power-user language.
+The weird dialog about buffers and Ex-mode etc. may be easy enough for you to sift through but the real trouble is the former.
 When you start using Vim you have no idea what you want to learn!
 Most have a vuage idea of what functionality they want, but do not know the proper Vim terminology.
 That makes internet searching for a how-to very hard.
@@ -64,7 +67,7 @@ Most users will pick up a trick here and there over the years from their coworke
 \item Practice using them enough to commit them to muscle memory for a truly efficient workflow.
 \item When you change your workflow, use your understanding from step one and revert to step 2.
 \end{itemize}
-This is an efficient method of learning Vim or any tool.
+This is an efficient method of learning Vim.
 Only learn the features you actually care to use.
 Know what the tool can do so that later on down the road when you need some other functionality, you know what to look for.
 This book aids you with the most important part of this process: Step one.
@@ -73,8 +76,7 @@ This book aids you with the most important part of this process: Step one.
 You can read this straight through or you can skip to the parts you really care about.
 It will be valuable to at least skim all of the material so that you come a way with an understanding of the full scope of Vim capabilites.
 If you are mystified by the terminology in this book, see the Vim Terminology section in the back.
-In fact, it would likely be helpful to skim the contents of the Vim Terminology section before hand as there are many words that mean one thing in the natural world or in the computer science
-world but are slightly different in Vim.
+Key terms will be displayed in bold text throughout the text in order to dispell confusion between words that have a unique meaning when used in a Vim context.
 
 \section{Vim Terminology}
 Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual, operator pending), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
