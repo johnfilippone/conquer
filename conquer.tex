@@ -357,7 +357,24 @@ GUI
     listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
     auto text wrapping (instead of hitting enter)
   left/right scrolling?
-  folding
+  Folding
+    nested folds
+    fold types
+      syntax based
+        use set foldmethod=syntax and set foldenable
+      indent based
+        use set foldmethod=indent
+        use set foldlevel=n to define how much you see and toggle foldlevel with zm and zr
+      regex defined
+      manually defined
+        use any motion commands with a z command
+      marker defined
+      diff differences are folded
+    operate folds recursively or one at a time (open, close, delete, toggle) (is toggle same as open/close?)
+    look into foldenable an dfoldlevel
+    foldcolumns visual que on the left if you're into that
+    execute command on a folded line will execute that command on every line in the fold
+    keep manually defined fold with :mkview and :loadview
   Color
     syntax highlighting (filetype detection beyond extension name)
       syntax defining files are in VIMRUNTIME/syntax
@@ -479,7 +496,6 @@ Workflow
       use next and previous to shuffle through or shortcut to alternate file
     move around to different files with buffer switching commands
     save current session settings to vimrc file with :mkvimrc filename
-  home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
   ctags comatability
     :tag command (look further into this)
@@ -561,27 +577,11 @@ Workflow
       by default undolevels is 1000
     undo by line
     repeat an edit (this is not redo; it is repeat edit)
+    repeat an ex command with @:
+    repeat a substitution with ampersan
     repeat an insert with ctrl-A
     special tricks for repeating substitutions p80 of OREILLY
     undo/redo branching; see usr32.txt
-  Folding
-    nested folds
-    fold types
-      syntax based
-        use set foldmethod=syntax and set foldenable
-      indent based
-        use set foldmethod=indent
-        use set foldlevel=n to define how much you see and toggle foldlevel with zm and zr
-      regex defined
-      manually defined
-        use any motion commands with a z command
-      marker defined
-      diff differences are folded
-    operate folds recursively or one at a time (open, close, delete, toggle) (is toggle same as open/close?)
-    look into foldenable an dfoldlevel
-    foldcolumns visual que on the left if you're into that
-    execute command on a folded line will execute that command on every line in the fold
-    keep manually defined fold with :mkview and :loadview
   edit files remotely
     scp, ftp, sftp, http, dav, rcp
   edit files that contian a given word
@@ -623,6 +623,7 @@ Workflow
   configure vim to execute python, perl, tct, and probably more inside of vim
   can make insert mode the default
 Customization
+  home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   if it is a thing, you can probably customize it
   conifgure backspace key with backspace option
   Vim configurations when compiling Vim
@@ -753,6 +754,10 @@ Support
     using vim to browse man pages is lame unless you run it through ul -i like this: man date | ul -i | vim; verify this
       alternatively use vim substitute to fix; maybe rig it up in a autocmd; Oualline p 167
 
+\section{Outline}
+
+
+\section{More Resources to Research}
 Vim resources I need to check out and maybe provide
   vi Lover's Home Page by Thomer M. Gil at http://www.thomer.com/vi/vi.html
   Vi Pages by Sven Guckes at http://www.vi-editor.org
