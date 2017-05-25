@@ -79,11 +79,12 @@ If you are mystified by the terminology in this book, see the Vim Terminology se
 Key terms will be displayed in bold text throughout the text in order to dispell confusion between words that have a unique meaning when used in a Vim context.
 
 \section{Vim Terminology}
-Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual, operator pending), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
+Buffers, word, WORD, motions, modes (normal, command, ex, insert, visual, select, operator pending, insert normal mode, replace mode), commands, yank v copy, put v paste, registers, text objects, windows, tabs, scripts, plugins, vimrc, dotfiles,
 NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, options, text object text object is like the w in cw command, one edit, movement command, pattern in context of
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax),
 set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only,
-read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files, status line
+read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files, status line,
+argument list
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
@@ -92,6 +93,8 @@ switching between modes
 concept of a word and WORD p 184 of Oualline
   concept of how vim interprets filenames, comments, identifies, definitions, and printing characters is related
 concept of an edit
+  using arrow keys during an insert affects the edit
+concept of operator motion grammar
 buffers
 tags priority and kind
 gvim menu items priority structure
@@ -158,7 +161,7 @@ Editing text
         insert, append, replace, or change text to multiple lines on the same column
         indent blocks
       repeat a visual selection with gv
-      move cursor between beggining and end of selection
+      move cursor between beggining and end of selection with o
       write a sleection to a file
       pipe selection through unix program like sort: select text then use !sort in normal mode (performs operation on lines whether or not you are using visual line mode
       select mode
@@ -229,9 +232,13 @@ Editing text
         use ctrl-c instead of esc key if you want to exit insert mode without completing abbreviations
         noreabbreviation to avoid chains
       auto generate matching "" '' [] {} () HTML-tags etc.
+      command line
+        scroll thorugh commands with tab, shift-tab, up and down
     special characters
       digraphs
         there are built in shortcuts for typing; just have to learn them
+      ctrl-v in insert mode followed by char code
+      insert char literally with ctrl-v insert mode followed by a non digit char like tab
     comments
       easily generate box outlines for box comments with abreviations
       maybe us external program, boxes, to make comment boxes
@@ -240,9 +247,11 @@ Editing text
         does this work for languages other than c?
         managed by formatoptions option
       comment and uncomment blocks easily with block visual mode
+      comment and un comment with ex command like this :normal i//
     write in foreign languages including right to left languages, farsi and hebrew
       also other languages; maps keyboard to other language characters; need to look into how this is done more
       write right to left
+  inserting evaluated expressions with expression register invoked with ctrl-r=
   inserting tabs vs spaces
     expandtab makes the TAB key insert spaces
     override this with CTRL-V before writing a tab (useful for Makefiles)
@@ -253,15 +262,20 @@ Editing text
   substitutions (regex support)
     global
     by line(s)
+    by visual selection with the use of ex command
     confirmation
     context aware substitue
     change and all of its variations: cw, cb, c2b, c0, C, etc
+    put word under cursor directly into sub command with ctrl-r ctrl-w
     replace
       type over existing text
+      toggle between insert and replace mode with insert key
+      Virtual replace with gR and gr; difference is it will act as if tabs are spaces always
   copy/paste
     put from register
       registers hold anything, even edit commands
       registers hold read only metadata like filename
+      from insert mode with ctrl-r and ctrl-r ctrl-p
     read command
       !sort filter (:r !sort file-that-needs-sorting)
     copy/paste within a single file
@@ -297,6 +311,7 @@ Editing text
       set formatprg=fmt
   edit a bunch of files the same way
     batch file i.e. a vim script containing a set of commands that you can run on a file from the unix command line
+    use bufdo to run a source command on all buffers; the source command can source a batch file
   encryption
     rot13 encrypt with g??
 Cursor Navigation
@@ -450,6 +465,15 @@ GUI
   list mode
     customize chars list mode uses with listchars
 Workflow
+  history
+    scroll through history on commandline
+      for ex commands
+      for searches
+    command-line window
+      q: for commands
+      q/ for searches
+      edit commands in the command line window even with ex commands
+      exit command-line window with :q just like any other window
   ga will show you ascii number or char under cursor
   Backwards compatible with vi
   Mouse compatability
@@ -469,10 +493,13 @@ Workflow
       move windows around display
         swap windows with retaining size or retaining window layout
         rotate windows of a column or row
+        move window to a new tab
       tabs
         can vim open silent tabs?
         tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
         cycle from last tab straight to first and vis versa
+        tabs can contain windows
+        reorder tabs
       split search; same as * command except does it in a new split window; ctrl-w ctrl-i
       status lines for each window is a toggle
       :[n]split [++opt] [+cmd] filename
@@ -483,7 +510,7 @@ Workflow
       execute command on all windows with :windo
       open tag or file (on path defined in option variable, path) in new window or tab
       close windows
-        quit, close, hide, and close all others
+        quit, close, hide, and only (close all others)
           hidden option
       windows can have their own status line or not
       bind the scrolling of two windows vertical and/or horizontal with scrollbind
@@ -570,6 +597,7 @@ Workflow
     when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
     remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
     cd and pwd command mode commands
+      lcd for changing context of specific window
   command tab completion :e :h etc.
   vim diff
   Undo/redo
@@ -582,6 +610,7 @@ Workflow
     repeat an insert with ctrl-A
     special tricks for repeating substitutions p80 of OREILLY
     undo/redo branching; see usr32.txt
+    ex commands are not always straight forward to undo
   edit files remotely
     scp, ftp, sftp, http, dav, rcp
   edit files that contian a given word
@@ -623,6 +652,11 @@ Workflow
   configure vim to execute python, perl, tct, and probably more inside of vim
   can make insert mode the default
 Customization
+  creating custom operators
+    create an operator to comment code
+    help file is map-operator
+  creating custom motions
+    help file is omap-info
   home dir dot file executed first then the one in cwd; possiblity for different settings in different envirionments
   if it is a thing, you can probably customize it
   conifgure backspace key with backspace option
