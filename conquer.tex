@@ -84,11 +84,12 @@ NERDTree, Pathogen, Vundle, mapping, abbreviations, macros, autocommands, option
 searching, bottom-line command (includes searches and anything on bottom line that is not formally a command), the ex editor, toggle options (note the set option|nooption|option? syntax),
 set, map, ab, concept of word vs WORD, ctags, tag stacking or tag stacks, power user, transparent editing, session, instance of Vim, buffers (active, inactive, hidden, unlisted, modifiable, read-only,
 read errors), special buffers (quickfix, help, directory, scratch), alternate file (saved in the hashtag register) or alternate buffer, VIMRUNTIME dir, events, swp or swap files, status line,
-argument list
+argument list, block and non block text objects, jump and the distinction between and jump and a motion (if it goes into the jump list it is a jump; motions are always within the file; if it goes to
+another buffer it is a jump; some motions within file are classified as jumps and go in the jump list)
 
 \section{Inner workings}
 General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
-what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg
+what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg, yank reg, 2 clipboard registers
 switching between modes
 concept of a word and WORD p 184 of Oualline
   concept of how vim interprets filenames, comments, identifies, definitions, and printing characters is related
@@ -117,6 +118,7 @@ Regex support
   matching beggining and end of words (not a general regex thing? only vim thing?)
   look into isident, iskeyword, isfname, magic, and isprint options
   going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
+  magic and very magic
 Basic ways to use features
   gui
   command line args
@@ -287,6 +289,7 @@ Editing text
       when smart indenting is on this can result in the progressivly cascading indent problem;
         solve with set paste?  look into this; paste is a shorthand for setting a bunch of other options
         if you use this you can use a pastetoggle key to switch in and out of paste mode quickly
+        or use plus register; this will work reguardless of how paste is set?
   toggle upper/lower case
   editing with unix commands
     filter text in file through Unix commands
@@ -314,6 +317,11 @@ Editing text
     use bufdo to run a source command on all buffers; the source command can source a batch file
   encryption
     rot13 encrypt with g??
+  editing matching structures
+    text object motions
+      inside and around
+    Surround.vim plugin by Tim Pope allows surrounding visual selection with matching chars
+    matchit.vim plugin allows advanced matching beyond the basic chars
 Cursor Navigation
   motions
     hjkl
@@ -334,6 +342,12 @@ Cursor Navigation
       to start or end of method
       to next or prev { or }
       to begining and end of comments
+      jump stack
+      change stack
+        one change stack for every buffer
+      tag stack
+      jump to last insertion with gi
+        one jump stack for every window
     scrolling
       automatic scroll as you type passed bottom
       scroll by screen or half screen
@@ -349,6 +363,8 @@ Cursor Navigation
       bookmarks are not stored in file; stored in session
       global marks transend files within a vim session; what happens when combinging other commands with a motion to a global mark?
     search as a motion
+    jump to file under cursor with gf
+      suffixesadd can help with filenames that lack extension
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -357,6 +373,8 @@ Searching
   quick scrolling through search results
   find
   case sensitive option
+    use backslash c and backslash C to override ignorecase option
+    smartcase
   incremental search :set incsearch
   scroll through search history with arrow keys
   search for def of variable (local or global scope)
@@ -530,6 +548,8 @@ Workflow
     :tagselect shows instances of the same tag
     tag stacking
       related to jump stack
+      ctrl-o and ctrl-i for back and forward
+      check for scope of tag stack and jump stack accross windows and tabs and multi buffer window contexts
     tags option defines where vim looks for tags
     compatible with etags
   copy to system clipboard from Vim
@@ -566,6 +586,8 @@ Workflow
       edit binary files; set the binary option for safer editing; this turns on/off some vim settings that make editing binaries safer but editing binaries is still not recommended
     file browsing
       delete and rename files and directories
+      make directories
+        if you open a buffer that does not exist in a dir or chain of dirs that does not exist, create the missing dirs with :!mkdir -p %:h
       search thorugh dir like a normal vim file
       open file in split window
       can you do a quiet open? where file goes into a new tab?
@@ -574,6 +596,8 @@ Workflow
       wildcard menu for comandline filename completion
         siffixes option defines extensions that are given low priority in wildcard menu
         look into wildmode
+      Explore, Sexplore, Vexplore
+        commands that are shorthand for open file browser for current active buffer dir in current window, new horizontal split window or new vertical split window
     directly edit compressed files and directories (transparent editing)
     configure vim to produce backup files
       automatically backup files
@@ -760,6 +784,11 @@ Customization
     list mappings with :map
   command combinations like ddp
   Macros (aka @-Functions)
+    feature: macros get killed when a motion command fails
+    technique: write a macro for one line and visually select lines and use normal command to execute macro on each line
+    technique: use argdo or bufdo to run macro on multiple files
+    use let command to save a var and increment it and = reg to put it in the text to create number lists
+    edit macros by putting them in the doc and yanking them back into the register after editing
   pre/post edit routines
     VIMINIT env var
     .vimrc for initialization state (and gvimrc; executed after vimrc if using gvim)
