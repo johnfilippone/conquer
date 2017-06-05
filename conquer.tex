@@ -118,7 +118,9 @@ Regex support
   matching beggining and end of words (not a general regex thing? only vim thing?)
   look into isident, iskeyword, isfname, magic, and isprint options
   going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
-  magic and very magic
+  magic and very magic and verbatum
+  lookaround, positive, negative, forward, behind
+  escape builtin function
 Basic ways to use features
   gui
   command line args
@@ -382,6 +384,14 @@ Searching
   display macro definition of macro under the cursor
   search for a word under the cursor in the current file and any brought in by include directives: [CTRL-I, ]CTRL-I
   search offset; change locaiton of cursor when finding a search result; i.e. /keyword/b2 will put the cursor on the y of keyword when that keyword is found
+  visually select next or prev term with gn and gN
+  auto complete search with ctrl-r ctrl-w
+  repeat search with //
+  get count of matches
+    substitue command hack p214 Niel; search the thing and then :s///gn
+    vimgrep gives you total and number (i.e. 3 of 5)
+  search selected text feature
+    :vmap X y/<C-R>"<CR>
 GUI
   wrap or no wrap for horizontal lines
     vim might shift lines left and right to make them fit? check this out
