@@ -205,7 +205,8 @@ Editing text
       insert x amount of something at once i.e. 3iabcESC writes abcabcabc
     completion
       whole line
-      current file keywords
+      current buffer keywords
+      generic completion pulls from all files in buffer list, included files, and ctags; this can be customized
       dictionary option keywords
         initially dictionary option is empty; must add a dictionary file or multiple
       thesaurus option keywords
@@ -238,6 +239,7 @@ Editing text
       auto generate matching "" '' [] {} () HTML-tags etc.
       command line
         scroll thorugh commands with tab, shift-tab, up and down
+      infercase can help if you use ignorecase
     special characters
       digraphs
         there are built in shortcuts for typing; just have to learn them
@@ -275,6 +277,13 @@ Editing text
       type over existing text
       toggle between insert and replace mode with insert key
       Virtual replace with gR and gr; difference is it will act as if tabs are spaces always
+    using regex; search for regex first to get the regex right then use substitution with empty pattern field to use the previous search string
+    possible to do multi line substitutions by passing blocks of text by reference p227 Neil
+    quick substitution trick on 228 Neil: search a pattern and load a replacement string into reg a and then execute a generic s command that replaces the last search term with the contents of the a reg
+      you can then repeat this process without ever having to type a s command by hand; just reuse the s command that repalces the last search term with the contents of the a reg
+    move columns of csv data around with regex groups
+    repeat substitution with ampersan command and double ampersan if you don't want to ignore any flags used
+    do a substitution across project files with vim grep and cfdo p.239 Neil
   copy/paste
     put from register
       registers hold anything, even edit commands
@@ -562,16 +571,20 @@ Workflow
       check for scope of tag stack and jump stack accross windows and tabs and multi buffer window contexts
     tags option defines where vim looks for tags
     compatible with etags
+    put cursor over word and use <C-]> to go to the definition; if multiple matches, g<C-]> will present a list
+    if multiple matches for a
   copy to system clipboard from Vim
     system clipboard register is "* ?  verify this
     in gvim this is default I think? verify!
-  edit-compile-edit cycle with quick fix
+  edit-compile-edit cycle with quickfix
     find out if this can be done in many languages, not just c
     compile from vim with :make filename
     define program used to make with makeprg option
     jump to location of errors
     easily move between locations of all the errors
-  rename refactor with vimgrep and quick fix
+    use location lists instead so that you can have multiple lists; there can only be one quickfix list at a time
+    use old quickfix lists; vim remembers 10
+  rename refactor with vimgrep and quickfix
     p 283 O'REILLY
   automatically jump to compile error lines
     look into redir command
@@ -815,6 +828,8 @@ Customization
     there are clearly defined levels for this Oualline 402
 Applied Vim to specific languages
   HTML
+  css
+    alphebatize css rules with global p.248 Nel
   Python
 Support
   Vim help files with tags

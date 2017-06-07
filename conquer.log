@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  5 JUN 2017 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  7 JUN 2017 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -58,16 +58,16 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 64.
  [4] [5] [6]
-[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] (./conquer.aux) )
+[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] (./conquer.aux) )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 439 ({)
-### simple group (level 1) entered at line 339 ({)
+### simple group (level 2) entered at line 448 ({)
+### simple group (level 1) entered at line 348 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  256 strings out of 493029
  2871 string characters out of 6136235
- 142920 words of memory out of 5000000
+ 147080 words of memory out of 5000000
  3870 multiletter control sequences out of 15000+600000
  6365 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -77,10 +77,10 @@ mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on conquer.pdf (17 pages, 109729 bytes).
+Output written on conquer.pdf (18 pages, 111032 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 82 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
