@@ -1,4 +1,4 @@
-Outline
+rutline
 *Table of Contents
 *Purpose
 *Important Historical Perspective
@@ -7,34 +7,21 @@ Outline
 *How You Ought To Learn Vim
 *How to Use This Book
 Vim Terminology
-Important Vim Constructs
-Vim Capabilities
-Index
-
-Outline detailed
-Important Vim Constructs
+Important Vim Constructs (new name: Mechanisms)
   Ways to Access Functionality in Vim
   Vim Command Grammars
-  Mode
+  Modes
   Concept of an Edit
   Buffers
   Registers
   Tags
   Marks
-  Autocommands
   Regex
-Capabilities
-  Editing
-    Inserting Text
-    Deleting Text
-    Replacing Text
-    Cut Copy Paste
+Vim Capabilities
   Navigating
-    Moving Around a File
-    Search
+  Editing
   Work Environment
-    Graphical User Interface (GUI)
-    File Management
+Index
 
 More Resources to Research
   vi Lover's Home Page by Thomer M. Gil at http://www.thomer.com/vi/vi.html
@@ -82,13 +69,6 @@ Regex support
   magic and very magic and verbatum
   lookaround, positive, negative, forward, behind
   escape builtin function
-Basic ways to use features
-  gui
-  command line args
-  options
-  ex commands
-  mouse
-	modelines; comments that define options automatially p268 Oualline
 
 
 Vim Capabilities
@@ -137,32 +117,27 @@ Editing text
         can toggle between visual and select mode
     combine edits with motions
   Insertions
-    basic insert/append
-      start inserting at nifty places
-        end of line
-        start of line; this can be first non blank char or first column regardless if it is blank
-        beggining of new line above or below
-        smart indenting
-          :set autoindent (next line starts on same indent level on enter)
-          indent in insert mode ctrl-t and ctrl-d
-          automatically insert leading comment characters when writing a comment that exceeds length of line defined by wrapmargin or textwidth
-          audoindent and smartindent
-          cindent
-            probably best for most programmers
-            customization
-              cinkeys: keys that trigger a reevaluation of indenting
-              cinoptions: customizes a lot of the syntax related indenting behavior; look more into this
-              cinwords: words that trigger a reevaluation of indenting (case sensitive regardless of ignorecase option)
-          indentexpr
-            defines an expression that is evaluated each time a new line is created in a file
-            the expression evaluates to a number of indents for that line
-            scripts exist in VIMRUNTIME for most languages already; use 'filetype plugin indent on' to use the appropriate one based on filetype
-        regular indenting
-          use tab in insert mode
-          tab over syntax or otherwise defined blocks through various methods
-          use command with number arg
-          use comparator chars
-          use ctrl-g and ctrl-t in insert mode
+    smart indenting
+      :set autoindent (next line starts on same indent level on enter)
+      indent in insert mode ctrl-t and ctrl-d
+      automatically insert leading comment characters when writing a comment that exceeds length of line defined by wrapmargin or textwidth
+      audoindent and smartindent
+      cindent
+        probably best for most programmers
+        customization
+          cinkeys: keys that trigger a reevaluation of indenting
+          cinoptions: customizes a lot of the syntax related indenting behavior; look more into this
+          cinwords: words that trigger a reevaluation of indenting (case sensitive regardless of ignorecase option)
+      indentexpr
+        defines an expression that is evaluated each time a new line is created in a file
+        the expression evaluates to a number of indents for that line
+        scripts exist in VIMRUNTIME for most languages already; use 'filetype plugin indent on' to use the appropriate one based on filetype
+      regular indenting
+        use tab in insert mode
+        tab over syntax or otherwise defined blocks through various methods
+        use command with number arg
+        use comparator chars
+        use ctrl-g and ctrl-t in insert mode
       insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
       insert x amount of something at once i.e. 3iabcESC writes abcabcabc
     completion
@@ -264,6 +239,8 @@ Editing text
         if you use this you can use a pastetoggle key to switch in and out of paste mode quickly
         or use plus register; this will work reguardless of how paste is set?
   toggle upper/lower case
+    combine gu and gU and g~ with text objects and motions is very useful
+    guu and gUU and g~~ operate on the whole line
   editing with unix commands
     filter text in file through Unix commands
     Run Unix commands from vim
@@ -274,6 +251,7 @@ Editing text
       read output of unix command directly into file (:r !command)
   alphanumeric sort lines
   edit binary files -b
+    convert file to hex dump with :%!xxd and back to normal with :%!xxd -r
   formatting
     justify text so that it looks nice; i.e. put line breaks in nice places automatically
       VIRUNTIME/macros/justify.vim
@@ -300,6 +278,10 @@ Editing text
     get suggestions on misspelled word with z=
     you can use dictionaries for other dialects and languages and even make your own dictionaries
     quick spell recover from insert mode with <C-x>s
+  reverse order of lines; user manual page 95-96
+  editing tables
+    gr and gR usful when replacing tabs in tabular data
+    virtualedit option for moving around tabular data; also useful otherwise
 Cursor Navigation
   motions
     hjkl
@@ -334,6 +316,7 @@ Cursor Navigation
       scroll relative to any line (same as z with numeric prefix)
       scroll specified amount specified by scroll option
       control amount of scroll when cursor moving toward the edge of the screen
+      keys for scrolling horizontal; user manual p140
     return to previous cursor position
     save and goto invisible bookmark called mark
       see all marks with :marks
@@ -343,6 +326,8 @@ Cursor Navigation
     search as a motion
     jump to file under cursor with gf
       suffixesadd can help with filenames that lack extension
+      gf over a url will download files
+    programming specific motions on user manual p170
 Searching
   search forward/backward with wrapping or not (regex support)
   fuzzy find
@@ -395,6 +380,8 @@ GUI
     foldcolumns visual que on the left if you're into that
     execute command on a folded line will execute that command on every line in the fold
     keep manually defined fold with :mkview and :loadview
+    open and close folds with mouse
+    foldopen and foldclose options help open and close folds on specified commands; useful if you want to open and close when cursor enters/leaves fold
   Color
     syntax highlighting (filetype detection beyond extension name)
       syntax defining files are in VIMRUNTIME/syntax
@@ -462,6 +449,8 @@ GUI
     execute vimdiff from commandline
     non unix vim versions come with a vim version of diff (unix of course uses the built in command)
     diffexpr option defines replacement expression
+    user manual 8.7
+    fix differences with diff put then update highlighting with diffupdate
   showcmd
   vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
   errorbells and visualbells
@@ -469,6 +458,7 @@ GUI
     customize reporting changes with report
   list mode
     customize chars list mode uses with listchars
+  get word count with g CTRL-G
 Workflow
   history
     scroll through history on commandline
@@ -526,6 +516,7 @@ Workflow
       vim f1.txt f2.txt ...
       see files with :args
       use next and previous to shuffle through or shortcut to alternate file
+      use shell script to execut vim script; user manual p147
     move around to different files with buffer switching commands
     save current session settings to vimrc file with :mkvimrc filename
   many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
@@ -541,6 +532,10 @@ Workflow
     compatible with etags
     put cursor over word and use <C-]> to go to the definition; if multiple matches, g<C-]> will present a list
     if multiple matches for a
+    other programs to add tag functionality
+      exuberent tags program; tag browsing; user manual p168
+      SNiFF
+      Cscope
   copy to system clipboard from Vim
     system clipboard register is "* ?  verify this
     in gvim this is default I think? verify!
@@ -557,15 +552,20 @@ Workflow
   automatically jump to compile error lines
     look into redir command
   File management
+    auto saving
     creating files
     opening/closing files
+    rename file with :saveas or :file; :file will protect from overwriting a file with the same name as what you saveas; saveas will overwrite if your new filename exists
     opening files read only
+      mention options: modifiable and write
     open file with cursor at position
       on line number
       on first occurance of pattern
       on last line
     recovering edited buffers after crash
       swap files
+      user manual ch 11 should be referenced
+      vim -r to find swp files
       vim will try not to override swp files; it will name the next one swo then swn and so on
       control when swp file gets written; 4 seconds or 200 chars is default
       control where swp files are written; can be multiple files
@@ -573,6 +573,7 @@ Workflow
     write to open file or any file by name or create new file and write to it
     write or append part of a file to a new file
     open a bunch of files in one session and switch between them on one screen
+    open files if they contain key word; vim `grep -l pattern wheretolook-*.py`
     open file reguardless of file type
       edit binary files; set the binary option for safer editing; this turns on/off some vim settings that make editing binaries safer but editing binaries is still not recommended
     file browsing
@@ -609,6 +610,7 @@ Workflow
       key option holds your encription key
       encrypt an existing file or new file
       vim encryption is weak
+      -x option on commandline; will ask you for a password; also -X for *****
     when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
     remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
     cd and pwd command mode commands
@@ -631,7 +633,9 @@ Workflow
   edit files that contian a given word
     vim `grep -l 'special-term' *`
   save session state
+    :oldfiles and :browse oldfiles
     viminfo file
+      can save viminfo files for later with :wviminfo! and :rviminfo!
       managed by the viminfo option parameters
         save lines for each register up to n lines
         number of search pattern items to save
@@ -663,6 +667,8 @@ Workflow
         dir in which session file is located
         unix end of line format
         window position on the screen
+    mkview
+      works same as mksession but includes only view type information
   quick command history reference with ctrl-f in commandline; full history with :history command; can set amount of remembered commands
   configure vim to execute python, perl, tct, and probably more inside of vim
   can make insert mode the default
@@ -682,7 +688,7 @@ Customization
     if/else
       inline, elseif and else are optional
     while
-    datetime support
+    datetime support; !!date in normal mode or :read !date
     variables
       optionally explicitly define variable scope
       handle strings and ints
@@ -780,6 +786,7 @@ Customization
     technique: use argdo or bufdo to run macro on multiple files
     use let command to save a var and increment it and = reg to put it in the text to create number lists
     edit macros by putting them in the doc and yanking them back into the register after editing
+    record macros to a file by opening a file with vim -s script file
   pre/post edit routines
     VIMINIT env var
     .vimrc for initialization state (and gvimrc; executed after vimrc if using gvim)
@@ -801,6 +808,7 @@ Applied Vim to specific languages
   Python
 Support
   Vim help files with tags
+    use help to look up error IDs
   vimtutor
   use K to open man page for word under cursor
     K takes a prefix number i.e. 2K to specify section number in the man page
@@ -812,49 +820,3 @@ Support
   options window
   printing support; :hardcopy; printing in color even in dark background vim; or convert to html first then print from browser
 
-
-Vim Terminology
-abbreviations
-alternate file (saved in the hashtag register) or alternate buffer
-argument list
-autocommands
-bottom-line command (includes searches and anything on bottom line that is not formally a command)
-buffers (active, inactive, hidden, unlisted, modifiable, read-only, read errors)
-commands and colon commands
-ctags
-dotfiles
-edit (as a unit used in undo)
-events
-ex editor
-instance of Vim
-jump and the distinction between and jump and a motion (if it goes into the jump list it is a jump; motions are always within the file; if it goes to another buffer it is a jump; some motions within file are classified as jumps and go in the jump list)
-macros
-mapping
-modes (normal, command, ex, insert, visual, select, operator pending, insert normal mode, replace mode)
-motions
-movement command
-NERDTree
-options
-Pathogen
-pattern in context of searching
-plugins
-power user
-put v paste
-registers
-scripts
-session
-special buffers (quickfix, help, directory, scratch)
-status line
-swp or swap files
-tabs
-tag stacking or tag stacks
-text objects (block and non block text objects)
-toggle options (note the set option|nooption|option?|option!|option(ampersand) Syntax)
-transparent editing
-vimrc
-VIMRUNTIME directory
-Vundle
-windows
-word
-WORD
-yank v copy

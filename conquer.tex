@@ -34,7 +34,7 @@ know what to look for.  This book aids you with the most important step in the p
 You can read this straight through or you can skip to the parts you really care about.  It will be valuable to at least skim all of the material so that you come away with an understanding of the full
 scope of Vim capabilities.  If you are mystified by the terminology in this book, refer to the Vim Terminology section.
 
-\section{Vim Terminology}
+\chapter{Vim Terminology}
 These are words that you may come accross in this book or on the internet in a Vim context.  Many of these can be very mystifying if you don't understand their special Vim meaning.  Throughout this
 book, these words are in bold when used in the context detailed in this section.  For example if this book uses the word "buffer" but it is not bold, think in terms of a normal dictionary definition.
 If it is bold, use the meaning detailed in this section.
@@ -59,6 +59,7 @@ modes (normal, command, ex, insert, visual, select, operator pending, insert nor
 motions
 movement command
 NERDTree
+operator
 options
 Pathogen
 pattern in context of searching
@@ -84,33 +85,89 @@ windows
 word
 WORD
 yank v copy
+row
+column
+modelines
+buffer list
+current selection and real clipboard from user manual page 73
 
-\chapter{Important Vim Constructs}
+\chapter{Mechanisms of The Vim Universe}
 \section{Ways to Access Functionality in Vim}
+Most editors are quite similar in the way that functionality is accessed.  They usually involve point and click menues and toolbars.  Vim offers a lot more ways to do things.  There are a lot of
+moving parts and it can get confusing.  This section will help you wrap your mind around all the Vim constructs used to invoke and alter functionality.
+  \subsection{Command Line Arguments}
+When you start Vim from the command line you can invoke functionality with the arguments and options.  Generally, you will run Vim with a single filename being the only argument.
+  \subsection{Commands}
+    \subsubsection{Colon Commands}
+    Colon commands, Command-line commands, and Ex Commands are all the same.
+    \subsubsection{Normal Mode Commands}
+    \subsubsection{Other Mode Commands}
+  \subsection{Options}
+  \subsection{Dotfiles}
+  \subsection{Autocommands}
+  \subsection{GUI}
+    \subsubsection{Gvim Menus}
+    \subsubsection{Gvim Toolbars}
+  \subsection{Plugins and Scripts}
+  \subsection{Mouse}
+  \subsection{Modelines}
+  \subsection{Shell and External Programs}
+comments that define options automatially p268 Oualline
 \section{Vim Command Grammars}
 \section{Modes}
+Vim is a modal editor.  That simply means that Vim is at all times in one mode and your keystrokes will mean something different to Vim depending on the modal context in which they are typed.  There
+are two main Modes and several others
 \section{Concept of an Edit}
 \section{Buffers}
 \section{Registers}
 \section{Tags}
 \section{Marks}
-\section{Autocommands}
 \section{Regex}
 
 \chapter{Capabilities}
 Vim is a text editor with an incredible amount of features.  This section will allow you to wrap your mind around the vast set of Vim capabilities.  This section will not dive very deep into how to invoke
 functionality.  To do so would be far more information than is necessary to wrap your mind around Vim capabilities.
-\section{Editing}
-  \subsection{Inserting Text}
-  \subsection{Deleting Text}
-  \subsection{Replacing Text}
-  \subsection{Cut Copy Paste}
 \section{Navigating}
   \subsection{Moving Around a File}
   \subsection{Search}
+\section{Editing}
+  \subsection{Inserting}
+    \subsubsection{Basic Inserts and appending}
+The most basic way to insert in Vim is to activate Insert Mode and start typing.  The most basic method for activating Insert Mode is the Normal Mode command, i.  Normal Mode is restored by pressing
+the ESC key.  For added efficiency there are a variety of Normal Mode commands that activate Insert Mode and reposition the cursor for typing.  These can be pretty nifty.  Here are a few:
+%    \begin{center}
+%      \begin{tabular}{ |c|c| }
+%        \hline
+%        Normal Mode Command & Cursor Repositioning \\
+%        \hline
+%        i & none \\
+%        \hline
+%        I & before the first non-whitespace character in the line \\
+%        \hline
+%        a & one column to the right \\
+%        \hline
+%        A & after the last non-whitespace character in the line \\
+%        \hline
+%        o & on new line under the curent line\\
+%        \hline
+%        O & on new line above the curent line\\
+%        \hline
+%        gi & position of previous insert \\
+%        \hline
+%      \end{tabular}
+%    \end{center}
+It is possible to enable the point and click insertion that most editors use in Vim as well.  See the section on Mouse Compatability.
+    \subsubsection{Autocompletion}
+    \subsubsection{Special Characters and Foreign Language}
+  \subsection{Deleting}
+  \subsection{Replacing}
+  \subsection{Cut Copy Paste}
+  \subsection{Indenting}
+  \subsection{Toggling Case}
 \section{Work Environment}
   \subsection{Graphical User Interface (GUI)}
   \subsection{File Management}
+  \subsection{Mouse Compatability}
 \end{document}
 
 
