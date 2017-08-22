@@ -1,10 +1,11 @@
 \contentsline {chapter}{\numberline {1}Preamble}{3}
 \contentsline {section}{\numberline {1.1}Purpose}{3}
-\contentsline {section}{\numberline {1.2}Important Historical Perspective}{3}
-\contentsline {section}{\numberline {1.3}This Book's Unique Approach}{4}
-\contentsline {section}{\numberline {1.4}How Most People Learn Vim}{4}
-\contentsline {section}{\numberline {1.5}How You Ought To Learn Vim}{5}
-\contentsline {section}{\numberline {1.6}How to Use This Book}{6}
+\contentsline {section}{\numberline {1.2}Vim at a Glance}{3}
+\contentsline {section}{\numberline {1.3}Important Historical Perspective}{3}
+\contentsline {section}{\numberline {1.4}This Book's Unique Approach}{4}
+\contentsline {section}{\numberline {1.5}How Most People Learn Vim}{5}
+\contentsline {section}{\numberline {1.6}How You Ought To Learn Vim}{5}
+\contentsline {section}{\numberline {1.7}How to Use This Book}{6}
 \contentsline {chapter}{\numberline {2}Vim Terminology}{7}
 \contentsline {chapter}{\numberline {3}Mechanisms of The Vim Universe}{8}
 \contentsline {section}{\numberline {3.1}Ways to Access Functionality in Vim}{8}

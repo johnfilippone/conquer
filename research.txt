@@ -1,13 +1,17 @@
-rutline
-*Table of Contents
-*Purpose
-*Important Historical Perspective
-*This Book's Unique Approach
-*How Most People Learn Vim
-*How You Ought To Learn Vim
-*How to Use This Book
+reading at 231 out of 829
+
+
+Outline
+Preamble
+  *Table of Contents
+  *Purpose
+  *Important Historical Perspective
+  *This Book's Unique Approach
+  *How Most People Learn Vim
+  *How You Ought To Learn Vim
+  *How to Use This Book
 Vim Terminology
-Important Vim Constructs (new name: Mechanisms)
+Mechanisms
   Ways to Access Functionality in Vim
   Vim Command Grammars
   Modes
@@ -35,40 +39,43 @@ More Resources to Research
     old url: http://www.networkcomputing.com/unixworld/tutorial/009/009.html
   reference manual
 
-Inner workings
-General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
-what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg, yank reg, 2 clipboard registers
-switching between modes
-concept of a word and WORD p 184 of Oualline
-  concept of how vim interprets filenames, comments, identifies, definitions, and printing characters is related
-concept of an edit
-  using arrow keys during an insert affects the edit
-concept of operator motion grammar
-buffers
-tags priority and kind
-gvim menu items priority structure
-syntax groups and subgroups for coloring (are they used for anything else?)
-map overrides normal vim functionality
-order of initialization files like vimrc, exrc, etc.
-viminfo and retaining session state
-ctrl-Q and ctrl-S should be avoided in mappings because they are commands for the terminal to stop and start showing output; look into this
-+cmd argument; command line argument for vim that starts file at a line number or first instance of a pattern like this: vim +97 file.txt; also works for some vim commands
-concept of setting options and maybe an organized overview; suffixes ? and (ampersand) and prefix no;
-  options are boolean, numeric, string-related,
-    +=, -=, and carrot= for string option values
-    can reset all to default with :set all(ampersand)
-    set multiple options in one line
-Regex support
-  character classes [: :]
-  collating symbols [. .]
-  equivalence classes [= =]
-  for substitution, regex works in search portion, some other constructs exist for the replacement portion
-  matching beginning and end of words (not a general regex thing? Only vim thing?)
-  look into isident, iskeyword, isfname, magic, and isprint options
-  going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
-  magic and very magic and verbatum
-  lookaround, positive, negative, forward, behind
-  escape builtin function
+Mechanisms
+  General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
+  concept of operator motion grammar
+  concept of a word and WORD p 184 of Oualline
+    concept of how vim interprets filenames, comments, identifies, definitions, and printing characters is related
+  what Vim puts in the registers (sometimes called buffers?) special registers, black hole register, append to reg, expression reg, yank reg, 2 clipboard registers
+  switching between modes
+  concept of an edit
+    using arrow keys during an insert affects the edit
+  buffers
+  tags priority and kind
+  gvim menu items priority structure
+  syntax groups and subgroups for coloring (are they used for anything else?)
+  map overrides normal vim functionality
+  order of initialization files like vimrc, exrc, etc.
+  viminfo and retaining session state
+  ctrl-Q and ctrl-S should be avoided in mappings because they are commands for the terminal to stop and start showing output; look into this
+  +cmd argument; command line argument for vim that starts file at a line number or first instance of a pattern like this: vim +97 file.txt; also works for some vim commands
+  concept of setting options and maybe an organized overview; suffixes ? and (ampersand) and prefix no;
+    options are either boolean, numeric, string-related,
+      +=, -=, and carrot= for string option values
+      can reset all to default with :set all(ampersand)
+      set multiple options in one line
+  Regex support
+    character classes [: :]
+    collating symbols [. .]
+    equivalence classes [= =]
+    for substitution, regex works in search portion, some other constructs exist for the replacement portion
+    matching beginning and end of words (not a general regex thing? Only vim thing?)
+    look into isident, iskeyword, isfname, magic, and isprint options
+    going to have too look up most update vim 8.0 info on regex support and learn about regex in general a lot so that i can speak the regex language in the book
+    magic and very magic and verbatum modes of vim regex
+    lookaround, positive, negative, forward, behind
+    escape builtin function
+  Vim script
+  plugins
+  all types of commands
 
 
 Vim Capabilities
@@ -108,7 +115,7 @@ Editing text
         indent blocks
       repeat a visual selection with gv
       move cursor between beggining and end of selection with o
-      write a sleection to a file
+      write a selection to a file
       pipe selection through unix program like sort: select text then use !sort in normal mode (performs operation on lines whether or not you are using visual line mode
       select mode
         behaves more like what 'normal' editors do; backspace to del or type to del and replace
@@ -138,8 +145,13 @@ Editing text
         use command with number arg
         use comparator chars
         use ctrl-g and ctrl-t in insert mode
-      insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
-      insert x amount of something at once i.e. 3iabcESC writes abcabcabc
+    inserting tabs vs spaces
+      expandtab makes the TAB key insert spaces
+      override this with CTRL-V before writing a tab (useful for Makefiles)
+      combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
+      control size of tabs
+      expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
+      shiftround will make vim always tab to a column that is a multiple of shiftwidth
     completion
       whole line
       current buffer keywords
@@ -154,7 +166,7 @@ Editing text
       current and included file keywords
       tags (ctags)
       filenames
-        searches only current directory
+        searches only current directory (really?)
       macros
         sleep command can be useful for pausing macro execution
       vim command completion (useful for developing scripts)
@@ -194,14 +206,9 @@ Editing text
     write in foreign languages including right to left languages, farsi and hebrew
       also other languages; maps keyboard to other language characters; need to look into how this is done more
       write right to left
-  inserting evaluated expressions with expression register invoked with ctrl-r=
-  inserting tabs vs spaces
-    expandtab makes the TAB key insert spaces
-    override this with CTRL-V before writing a tab (useful for Makefiles)
-    combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
-    control size of tabs
-    expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
-    shiftround will make vim always tab to a column that is a multiple of shiftwidth
+    insert the char right above or below the cursor with ctrl-y and ctrl-e in insert mode
+    insert x amount of something at once i.e. 3iabcESC writes abcabcabc
+    inserting evaluated expressions with expression register invoked with ctrl-r=
   substitutions (regex support)
     global
     by line(s)
