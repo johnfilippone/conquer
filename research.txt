@@ -12,14 +12,15 @@ Preamble
   *How to Use This Book
 Vim Terminology
 Mechanisms
-  Ways to Access Functionality in Vim
-  Vim Command Grammars
   Modes
+  Vim Command Grammars
   Concept of an Edit
   Buffers
   Registers
   Tags
   Marks
+  Autocommands
+  Ways to Access Functionality in Vim
   Regex
 Vim Capabilities
   Navigating
@@ -39,7 +40,7 @@ More Resources to Research
     old url: http://www.networkcomputing.com/unixworld/tutorial/009/009.html
   reference manual
 
-Mechanisms
+Mechanisms (many of these are detailed in the customization section of this file)
   General form of (page 21 O'Reilly Learning the Vi and Vim editors) (command)(number)(text object) or (number)(command)(text object) for change, delete, yank, and put
   concept of operator motion grammar
   concept of a word and WORD p 184 of Oualline
@@ -62,6 +63,7 @@ Mechanisms
       +=, -=, and carrot= for string option values
       can reset all to default with :set all(ampersand)
       set multiple options in one line
+  autocommands (research is in customization section)
   Regex support
     character classes [: :]
     collating symbols [. .]
@@ -73,7 +75,7 @@ Mechanisms
     magic and very magic and verbatum modes of vim regex
     lookaround, positive, negative, forward, behind
     escape builtin function
-  Vim script
+  Vim script (research in customization section)
   plugins
   all types of commands
 
@@ -164,7 +166,7 @@ Editing text
         possible to use a programming thesaurus i.e. retrieve getchar getcwd get direntries getenv getgrent
         can get info in the pop up menu about which thesaurus each suggestion comes from
       current and included file keywords
-      tags (ctags)
+      tags (ctags) (talked about in Work Environment section under workflow)
       filenames
         searches only current directory (really?)
       macros
@@ -335,351 +337,353 @@ Cursor Navigation
       suffixesadd can help with filenames that lack extension
       gf over a url will download files
     programming specific motions on user manual p170
-Searching
-  search forward/backward with wrapping or not (regex support)
-  fuzzy find
-  automatically search word under the cursor
-  highlighting of search terms
-  quick scrolling through search results
-  find
-  case sensitive option
-    use backslash c and backslash C to override ignorecase option
-    smartcase
-  incremental search :set incsearch
-  scroll through search history with arrow keys
-  search for def of variable (local or global scope)
-  jump to macro def
-  display macro definition of macro under the cursor
-  search for a word under the cursor in the current file and any brought in by include directives: [CTRL-I, ]CTRL-I
-  use g* and g# to do word under cursor and match partial words
-  search offset; change locaiton of cursor when finding a search result; i.e. /keyword/b2 will put the cursor on the y of keyword when that keyword is found
-  visually select next or prev term with gn and gN
-  auto complete search with ctrl-r ctrl-w
-  repeat search with //
-  get count of matches
-    substitue command hack p214 Niel; search the thing and then :s///gn
-    vimgrep gives you total and number (i.e. 3 of 5)
-  search selected text feature
-    :vmap X y/<C-R>"<CR>
-GUI
-  wrap or no wrap for horizontal lines
-    vim might shift lines left and right to make them fit? check this out
-    slidescroll option limits such shifting
-    sidescrolloff option may also be useful
-    listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
-    auto text wrapping (instead of hitting enter)
-  left/right scrolling?
-  Folding
-    nested folds
-    fold types
-      syntax based
-        use set foldmethod=syntax and set foldenable
-      indent based
-        use set foldmethod=indent
-        use set foldlevel=n to define how much you see and toggle foldlevel with zm and zr
-      regex defined
-      manually defined
-        use any motion commands with a z command
-      marker defined
-      diff differences are folded
-    operate folds recursively or one at a time (open, close, delete, toggle) (is toggle same as open/close?)
-    look into foldenable an dfoldlevel
-    foldcolumns visual que on the left if you're into that
-    execute command on a folded line will execute that command on every line in the fold
-    keep manually defined fold with :mkview and :loadview
-    open and close folds with mouse
-    foldopen and foldclose options help open and close folds on specified commands; useful if you want to open and close when cursor enters/leaves fold
-  Color
-    syntax highlighting (filetype detection beyond extension name)
-      syntax defining files are in VIMRUNTIME/syntax
-    column coloring
-    colorschemes
-      I recommend base16-3024
-      customize with colorscheme, hightlight, and background options
-      redefine coloring for syntax groups with highlight command
-      :highlight will show you all coloring for all syntax groups
-      customize syntax group coloring for specific file types by including it in an after script
-        ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
-        also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
-      create your own syntax file
-        possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax
-    color test
-  highlighting
-    specific column(s)
-    search terms
-    matching { [ ( etc.
-  line numbering
-    normal numbers
-    relative numbers
-  redraw screen Crl-l
-  mode indicator
-  show white space chars with :list
-  gvim
-    basic point click and scroll you expect
-    gvimrc
-    checkout scrollbars; customizing them; use of scroll bars with multiple windows
-    menus
-      control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
-      control order of items within menus
-      control spacing between menu items
-      make your own menus and menu items that execute vim commands
-      tear off menues
-      make menues dependent on mode
-      special menu names "ToolBar" and "PopUp"
-      noremap menu mappings
-    toolbar
-      treated similarly as a one dimentional menu
-      uses bmp images as icons
-      define tooltips for icons
-    Windows gvim
-      self installing executable
-      basic copy/pasting is compatible with System clipboard
-    look into gvim specific options
-    title bar string
-      make title bar say the name of the file being edited
-      also can manually set title bar
-      adjust max length of title bar string
-      can also manaage string in minimized window bar
-    customize mouse behavior
-      turn mouse on and of by mode
-      mouse mappings
-      double click time
-      turn off mouse pointer when typing
-    make select mode default over visual mode or choose toggle method
-    invoke certain dialog boxes with commands instead of menu items
-    confirmation dialog boxes when action will delete data
-    browse options; badass; must write about this; maybe display the browse options menu in the book; allows you to browse an organized list of options, see defs and toggle; :browse set
-    set font with guifont; set guifont=* will bring up a menu of fonts to choose from
-    change style of the cursor
-  convert files to html with :TOhtml command
-  vimdiff gui
-    execute vimdiff from commandline
-    non unix vim versions come with a vim version of diff (unix of course uses the built in command)
-    diffexpr option defines replacement expression
-    user manual 8.7
-    fix differences with diff put then update highlighting with diffupdate
-  showcmd
-  vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
-  errorbells and visualbells
-  format status line
-    customize reporting changes with report
-  list mode
-    customize chars list mode uses with listchars
-  get word count with g CTRL-G
-Workflow
-  history
-    scroll through history on commandline
-      for ex commands
-      for searches
-    command-line window
-      q: for commands
-      q/ for searches
-      edit commands in the command line window even with ex commands
-      exit command-line window with :q just like any other window
-  ga will show you ascii number or char under cursor
-  Backwards compatible with vi
-  Mouse compatability
-    behave option can help make mouse behavior more like the way you are use to
-  Environment
-    windows (splits)
-      from initialization or during session
-      add/remove/switch windows
-      displaying two instances of same file
-      multi window ex commands
-      move cursor from window to window
-      resize windows
-        size is in lines and columns; change to n value or +/- lines/columns
-        options
-          when you switch to a window it will auto resize to your winheight and winwidth option values
-          equalalways, cmdheight, winminwith, winminheight
-      move windows around display
-        swap windows with retaining size or retaining window layout
-        rotate windows of a column or row
-        move window to a new tab
-      tabs
-        can vim open silent tabs?
-        tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
-        cycle from last tab straight to first and vis versa
-        tabs can contain windows
-        reorder tabs
-      split search; same as * command except does it in a new split window; ctrl-w ctrl-i
-      status lines for each window is a toggle
-      :[n]split [++opt] [+cmd] filename
-      equalsalways option to always make new windows equal size
-      look into :new and the autocommands it executes
-      :sview and :sfind; and generally add s to a lot of commands to get them to do the same thing in a split window
-      look into conditional split commands p179 OREILLY
-      execute command on all windows with :windo
-      open tag or file (on path defined in option variable, path) in new window or tab
-      close windows
-        quit, close, hide, and only (close all others)
-          hidden option
-      windows can have their own status line or not
-      bind the scrolling of two windows vertical and/or horizontal with scrollbind
-        look into syncbind as well
-      preview window
-    customize vim stuff with env vars
-    edit multiple files
-      vim f1.txt f2.txt ...
-      see files with :args
-      use next and previous to shuffle through or shortcut to alternate file
-      use shell script to execut vim script; user manual p147
-    move around to different files with buffer switching commands
-    save current session settings to vimrc file with :mkvimrc filename
-  many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
-  ctags comatability
-    :tag command (look further into this)
-    :tags shows list of tags that you have traversed through
-    :tagselect shows instances of the same tag
-    tag stacking
-      related to jump stack
-      ctrl-o and ctrl-i for back and forward
-      check for scope of tag stack and jump stack accross windows and tabs and multi buffer window contexts
-    tags option defines where vim looks for tags
-    compatible with etags
-    put cursor over word and use <C-]> to go to the definition; if multiple matches, g<C-]> will present a list
-    if multiple matches for a
-    other programs to add tag functionality
-      exuberent tags program; tag browsing; user manual p168
-      SNiFF
-      Cscope
-  copy to system clipboard from Vim
-    system clipboard register is "* ?  verify this
-    in gvim this is default I think? verify!
-  edit-compile-edit cycle with quickfix
-    find out if this can be done in many languages, not just c
-    compile from vim with :make filename
-    define program used to make with makeprg option
-    jump to location of errors
-    easily move between locations of all the errors
-    use location lists instead so that you can have multiple lists; there can only be one quickfix list at a time
-    use old quickfix lists; vim remembers 10
-  rename refactor with vimgrep and quickfix
-    p 283 O'REILLY
-  automatically jump to compile error lines
-    look into redir command
-  File management
-    auto saving
-    creating files
-    opening/closing files
-    rename file with :saveas or :file; :file will protect from overwriting a file with the same name as what you saveas; saveas will overwrite if your new filename exists
-    opening files read only
-      mention options: modifiable and write
-    open file with cursor at position
-      on line number
-      on first occurance of pattern
-      on last line
-    recovering edited buffers after crash
-      swap files
-      user manual ch 11 should be referenced
-      vim -r to find swp files
-      vim will try not to override swp files; it will name the next one swo then swn and so on
-      control when swp file gets written; 4 seconds or 200 chars is default
-      control where swp files are written; can be multiple files
-      preserve command will write to swp
-    write to open file or any file by name or create new file and write to it
-    write or append part of a file to a new file
-    open a bunch of files in one session and switch between them on one screen
-    open files if they contain key word; vim `grep -l pattern wheretolook-*.py`
-    open file reguardless of file type
-      edit binary files; set the binary option for safer editing; this turns on/off some vim settings that make editing binaries safer but editing binaries is still not recommended
-    file browsing
-      delete and rename files and directories
-      make directories
-        if you open a buffer that does not exist in a dir or chain of dirs that does not exist, create the missing dirs with :!mkdir -p %:h
-      search thorugh dir like a normal vim file
-      open file in split window
-      can you do a quiet open? where file goes into a new tab?
-      edit file that is under cursor with gf which is same as :find filename
-        path option defines where vim looks for filenames
-      wildcard menu for comandline filename completion
-        siffixes option defines extensions that are given low priority in wildcard menu
-        look into wildmode
-      Explore, Sexplore, Vexplore
-        commands that are shorthand for open file browser for current active buffer dir in current window, new horizontal split window or new vertical split window
-    directly edit compressed files and directories (transparent editing)
-    configure vim to produce backup files
-      automatically backup files
-      specify location for backups with backupdir
-      backup, writebackup, backupcopy, backupdir, backupnext options
-      vim will add a ~ extension to backup files; manage the extension with backupext
-      patchmode?
-      difference between backup and write backup?
-      if you are in a write protected file and you don't want to loose changes just write to another file from vim with :write filename
-    teach vim new filetypes based on unfamiliar file extensions (ex. let vim know that a .inc extension is a C file)
-    fileformats
-      this has to do with file formats with regards to end of line chars; unix is line feed, apple is return and dos is both
-      fileformats option manages this
-      vim auto detects unix,apple,dos file formats regarding the end of line chars and is able to read all formats
-      save a file in a different file format
-    control wether or not files end with and EOL char with endofline option
-    encryption
-      key option holds your encription key
-      encrypt an existing file or new file
-      vim encryption is weak
-      -x option on commandline; will ask you for a password; also -X for *****
-    when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
-    remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
-    cd and pwd command mode commands
-      lcd for changing context of specific window
-  command tab completion :e :h etc.
-  vim diff
-  Undo/redo
-    multi level undo/redo (aka infinite undo?)
-      by default undolevels is 1000
-    undo by line
-    repeat an edit (this is not redo; it is repeat edit)
-    repeat an ex command with @:
-    repeat a substitution with ampersan
-    repeat an insert with ctrl-A
-    special tricks for repeating substitutions p80 of OREILLY
-    undo/redo branching; see usr32.txt
-    ex commands are not always straight forward to undo
-  edit files remotely
-    scp, ftp, sftp, http, dav, rcp
-  edit files that contian a given word
-    vim `grep -l 'special-term' *`
-  save session state
-    :oldfiles and :browse oldfiles
-    viminfo file
-      can save viminfo files for later with :wviminfo! and :rviminfo!
-      managed by the viminfo option parameters
-        save lines for each register up to n lines
-        number of search pattern items to save
-        number of command line commands to save
-        max files vim will maintain info on
-      contains
-        command line history
-        search string history
-        input line history
-        registers
-        file marks
-        last search and substitute patterns
-        buffer list
-        global variables
-    mksession
-      :mksession filename will save just about everything about the session into a file that can be sourced in a vim session later
-      managed by sessionoptions option
-      what you can save
-        empty windows
-        windows and tabs
-        hidden and unloaded buffers
-        current dir
-        manually created folds, state of folds, local fold options
-        global vars
-        help window
-        local options i.e. options set locally to a particular window or buffer
-        options
-        window sizes
-        dir in which session file is located
-        unix end of line format
-        window position on the screen
-    mkview
-      works same as mksession but includes only view type information
-  quick command history reference with ctrl-f in commandline; full history with :history command; can set amount of remembered commands
-  configure vim to execute python, perl, tct, and probably more inside of vim
-  can make insert mode the default
-Customization
+  Searching
+    search forward/backward with wrapping or not (regex support)
+    fuzzy find
+    automatically search word under the cursor
+    highlighting of search terms
+    quick scrolling through search results
+    find
+    case sensitive option
+      use backslash c and backslash C to override ignorecase option
+      smartcase
+    incremental search :set incsearch
+    scroll through search history with arrow keys
+    search for def of variable (local or global scope)
+    jump to macro def
+    display macro definition of macro under the cursor
+    search for a word under the cursor in the current file and any brought in by include directives: [CTRL-I, ]CTRL-I
+    use g* and g# to do word under cursor and match partial words
+    search offset; change locaiton of cursor when finding a search result; i.e. /keyword/b2 will put the cursor on the y of keyword when that keyword is found
+    visually select next or prev term with gn and gN
+    auto complete search with ctrl-r ctrl-w
+    repeat search with //
+    get count of matches
+      substitue command hack p214 Niel; search the thing and then :s///gn
+      vimgrep gives you total and number (i.e. 3 of 5)
+    search selected text feature
+      :vmap X y/<C-R>"<CR>
+Work Environment
+  GUI
+    wrap or no wrap for horizontal lines
+      vim might shift lines left and right to make them fit? check this out
+      slidescroll option limits such shifting
+      sidescrolloff option may also be useful
+      listchars option defines characters that act as visual cues for lines that have more content to left or right of the screen
+      auto text wrapping (instead of hitting enter)
+    left/right scrolling?
+    Folding
+      nested folds
+      fold types
+        syntax based
+          use set foldmethod=syntax and set foldenable
+        indent based
+          use set foldmethod=indent
+          use set foldlevel=n to define how much you see and toggle foldlevel with zm and zr
+        regex defined
+        manually defined
+          use any motion commands with a z command
+        marker defined
+        diff differences are folded
+      operate folds recursively or one at a time (open, close, delete, toggle) (is toggle same as open/close?)
+      look into foldenable an dfoldlevel
+      foldcolumns visual que on the left if you're into that
+      execute command on a folded line will execute that command on every line in the fold
+      keep manually defined fold with :mkview and :loadview
+      open and close folds with mouse
+      foldopen and foldclose options help open and close folds on specified commands; useful if you want to open and close when cursor enters/leaves fold
+    Color
+      syntax highlighting (filetype detection beyond extension name)
+        syntax defining files are in VIMRUNTIME/syntax
+      column coloring
+      colorschemes
+        I recommend base16-3024
+        customize with colorscheme, hightlight, and background options
+        redefine coloring for syntax groups with highlight command
+        :highlight will show you all coloring for all syntax groups
+        customize syntax group coloring for specific file types by including it in an after script
+          ex. for xml put a file called xml.vim in the ~/.vim/after/syntax dir that contains your highlight commands
+          also put that dir in runtime path like this :set runtimepath+=~/.vim/after/syntax
+        create your own syntax file
+          possibly for a custom file extension; in this case you can get vim to automatically detect your extension and use your syntax
+      color test
+    highlighting
+      specific column(s)
+      search terms
+      matching { [ ( etc.
+    line numbering
+      normal numbers
+      relative numbers
+    redraw screen Crl-l
+    mode indicator
+    show white space chars with :list
+    gvim
+      basic point click and scroll you expect
+      gvimrc
+      checkout scrollbars; customizing them; use of scroll bars with multiple windows
+      menus
+        control order of root menus at the top (vim has a menu priority system including default menu priorities for existing menus that might be important to mention)
+        control order of items within menus
+        control spacing between menu items
+        make your own menus and menu items that execute vim commands
+        tear off menues
+        make menues dependent on mode
+        special menu names "ToolBar" and "PopUp"
+        noremap menu mappings
+      toolbar
+        treated similarly as a one dimentional menu
+        uses bmp images as icons
+        define tooltips for icons
+      Windows gvim
+        self installing executable
+        basic copy/pasting is compatible with System clipboard
+      look into gvim specific options
+      title bar string
+        make title bar say the name of the file being edited
+        also can manually set title bar
+        adjust max length of title bar string
+        can also manaage string in minimized window bar
+      customize mouse behavior
+        turn mouse on and of by mode
+        mouse mappings
+        double click time
+        turn off mouse pointer when typing
+      make select mode default over visual mode or choose toggle method
+      invoke certain dialog boxes with commands instead of menu items
+      confirmation dialog boxes when action will delete data
+      browse options; badass; must write about this; maybe display the browse options menu in the book; allows you to browse an organized list of options, see defs and toggle; :browse set
+      set font with guifont; set guifont=* will bring up a menu of fonts to choose from
+      change style of the cursor
+    convert files to html with :TOhtml command
+    vimdiff gui
+      execute vimdiff from commandline
+      non unix vim versions come with a vim version of diff (unix of course uses the built in command)
+      diffexpr option defines replacement expression
+      user manual 8.7
+      fix differences with diff put then update highlighting with diffupdate
+    showcmd
+    vim shows messages on the command line after certain commands like write, you can make these short with shortmess option
+    errorbells and visualbells
+    format status line
+      customize reporting changes with report
+    list mode
+      customize chars list mode uses with listchars
+    get word count with g CTRL-G
+  Workflow
+    history
+      scroll through history on commandline
+        for ex commands
+        for searches
+      command-line window
+        q: for commands
+        q/ for searches
+        edit commands in the command line window even with ex commands
+        exit command-line window with :q just like any other window
+    ga will show you ascii number or char under cursor
+    Backwards compatible with vi
+    Mouse compatability
+      behave option can help make mouse behavior more like the way you are use to
+    Environment
+      windows (splits)
+        from initialization or during session
+        add/remove/switch windows
+        displaying two instances of same file
+        multi window ex commands
+        move cursor from window to window
+        resize windows
+          size is in lines and columns; change to n value or +/- lines/columns
+          options
+            when you switch to a window it will auto resize to your winheight and winwidth option values
+            equalalways, cmdheight, winminwith, winminheight
+        move windows around display
+          swap windows with retaining size or retaining window layout
+          rotate windows of a column or row
+          move window to a new tab
+        tabs
+          can vim open silent tabs?
+          tabnew, tabclose, tabonly, tabprev, tabnext, CTRL page up/down
+          cycle from last tab straight to first and vis versa
+          tabs can contain windows
+          reorder tabs
+        split search; same as * command except does it in a new split window; ctrl-w ctrl-i
+        status lines for each window is a toggle
+        :[n]split [++opt] [+cmd] filename
+        equalsalways option to always make new windows equal size
+        look into :new and the autocommands it executes
+        :sview and :sfind; and generally add s to a lot of commands to get them to do the same thing in a split window
+        look into conditional split commands p179 OREILLY
+        execute command on all windows with :windo
+        open tag or file (on path defined in option variable, path) in new window or tab
+        close windows
+          quit, close, hide, and only (close all others)
+            hidden option
+        windows can have their own status line or not
+        bind the scrolling of two windows vertical and/or horizontal with scrollbind
+          look into syncbind as well
+        preview window
+      customize vim stuff with env vars
+      edit multiple files
+        vim f1.txt f2.txt ...
+        see files with :args
+        use next and previous to shuffle through or shortcut to alternate file
+        use shell script to execut vim script; user manual p147
+      move around to different files with buffer switching commands
+      save current session settings to vimrc file with :mkvimrc filename
+    many ways to get vim to display current vim state (options, abreviaitons, registers, etc.)
+    ctags comatability
+      :tag command (look further into this)
+      :tags shows list of tags that you have traversed through
+      :tagselect shows instances of the same tag
+      tag stacking
+        related to jump stack
+        ctrl-o and ctrl-i for back and forward
+        check for scope of tag stack and jump stack accross windows and tabs and multi buffer window contexts
+      tags option defines where vim looks for tags
+      compatible with etags
+      put cursor over word and use <C-]> to go to the definition; if multiple matches, g<C-]> will present a list
+      if multiple matches for a
+      other programs to add tag functionality
+        exuberent tags program; tag browsing; user manual p168
+        SNiFF
+        Cscope
+    copy to system clipboard from Vim
+      system clipboard register is "* ?  verify this
+      in gvim this is default I think? verify!
+    edit-compile-edit cycle with quickfix
+      find out if this can be done in many languages, not just c
+      compile from vim with :make filename
+      define program used to make with makeprg option
+      jump to location of errors
+      easily move between locations of all the errors
+      use location lists instead so that you can have multiple lists; there can only be one quickfix list at a time
+      use old quickfix lists; vim remembers 10
+    rename refactor with vimgrep and quickfix
+      p 283 O'REILLY
+    automatically jump to compile error lines
+      look into redir command
+    File management
+      auto saving
+      creating files
+      opening/closing files
+      rename file with :saveas or :file; :file will protect from overwriting a file with the same name as what you saveas; saveas will overwrite if your new filename exists
+      opening files read only
+        mention options: modifiable and write
+      open file with cursor at position
+        on line number
+        on first occurance of pattern
+        on last line
+      recovering edited buffers after crash
+        swap files
+        user manual ch 11 should be referenced
+        vim -r to find swp files
+        vim will try not to override swp files; it will name the next one swo then swn and so on
+        control when swp file gets written; 4 seconds or 200 chars is default
+        control where swp files are written; can be multiple files
+        preserve command will write to swp
+      write to open file or any file by name or create new file and write to it
+      write or append part of a file to a new file
+      open a bunch of files in one session and switch between them on one screen
+      open files if they contain key word; vim `grep -l pattern wheretolook-*.py`
+      open file reguardless of file type
+        edit binary files; set the binary option for safer editing; this turns on/off some vim settings that make editing binaries safer but editing binaries is still not recommended
+      file browsing
+        delete and rename files and directories
+        make directories
+          if you open a buffer that does not exist in a dir or chain of dirs that does not exist, create the missing dirs with :!mkdir -p %:h
+        search thorugh dir like a normal vim file
+        open file in split window
+        can you do a quiet open? where file goes into a new tab?
+        edit file that is under cursor with gf which is same as :find filename
+          path option defines where vim looks for filenames
+        wildcard menu for comandline filename completion
+          siffixes option defines extensions that are given low priority in wildcard menu
+          look into wildmode
+        Explore, Sexplore, Vexplore
+          commands that are shorthand for open file browser for current active buffer dir in current window, new horizontal split window or new vertical split window
+      directly edit compressed files and directories (transparent editing)
+      configure vim to produce backup files
+        automatically backup files
+        specify location for backups with backupdir
+        backup, writebackup, backupcopy, backupdir, backupnext options
+        vim will add a ~ extension to backup files; manage the extension with backupext
+        patchmode?
+        difference between backup and write backup?
+        if you are in a write protected file and you don't want to loose changes just write to another file from vim with :write filename
+      teach vim new filetypes based on unfamiliar file extensions (ex. let vim know that a .inc extension is a C file)
+      fileformats
+        this has to do with file formats with regards to end of line chars; unix is line feed, apple is return and dos is both
+        fileformats option manages this
+        vim auto detects unix,apple,dos file formats regarding the end of line chars and is able to read all formats
+        save a file in a different file format
+      control wether or not files end with and EOL char with endofline option
+      encryption
+        key option holds your encription key
+        encrypt an existing file or new file
+        vim encryption is weak
+        -x option on commandline; will ask you for a password; also -X for *****
+      when a file is changed by another program while you are editing and then you write, vim will give you a warning as ask if you want to continue
+      remove white space at ends of lines with substitude command; suggestion is to rig an auto command to do this on write
+      cd and pwd command mode commands
+        lcd for changing context of specific window
+    command tab completion :e :h etc.
+    vim diff
+    Undo/redo
+      multi level undo/redo (aka infinite undo?)
+        by default undolevels is 1000
+      undo by line
+      repeat an edit (this is not redo; it is repeat edit)
+      repeat an ex command with @:
+      repeat a substitution with ampersan
+      repeat an insert with ctrl-A
+      special tricks for repeating substitutions p80 of OREILLY
+      undo/redo branching; see usr32.txt
+      ex commands are not always straight forward to undo
+    edit files remotely
+      scp, ftp, sftp, http, dav, rcp
+    edit files that contian a given word
+      vim `grep -l 'special-term' *`
+    save session state
+      :oldfiles and :browse oldfiles
+      viminfo file
+        can save viminfo files for later with :wviminfo! and :rviminfo!
+        managed by the viminfo option parameters
+          save lines for each register up to n lines
+          number of search pattern items to save
+          number of command line commands to save
+          max files vim will maintain info on
+        contains
+          command line history
+          search string history
+          input line history
+          registers
+          file marks
+          last search and substitute patterns
+          buffer list
+          global variables
+      mksession
+        :mksession filename will save just about everything about the session into a file that can be sourced in a vim session later
+        managed by sessionoptions option
+        what you can save
+          empty windows
+          windows and tabs
+          hidden and unloaded buffers
+          current dir
+          manually created folds, state of folds, local fold options
+          global vars
+          help window
+          local options i.e. options set locally to a particular window or buffer
+          options
+          window sizes
+          dir in which session file is located
+          unix end of line format
+          window position on the screen
+      mkview
+        works same as mksession but includes only view type information
+    quick command history reference with ctrl-f in commandline; full history with :history command; can set amount of remembered commands
+    configure vim to execute python, perl, tct, and probably more inside of vim
+    can make insert mode the default
+
+Customization (talk about these items through out the book but no seperate section for customization)
   creating custom operators
     create an operator to comment code
     help file is map-operator
