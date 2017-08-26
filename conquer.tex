@@ -1,6 +1,7 @@
 \documentclass[12pt, oneside]{book}
 \title{Wrap Your Mind Around Vim 8.0}
 \author{John Filippone}
+\usepackage{enumitem}
 
 \begin{document}
 \maketitle
@@ -15,7 +16,6 @@ As stated on vim.org: Vim is a highly configurable text editor built to make cre
 
 \vspace{5mm}
 Vi was developed for UNIX and first released in 1978.  ``Vim" is short for Vi Improved.  Vim was initially modeled after vi and since the first release of Vim in 1991, Vim development has been highly active with the most recent release to date of this book being Vim 8.0 in 2016.
-
 
 \section{Important Historical Perspective}
 When Vim was created, it was made by Bram for Bram; meaning, the engineer who developed Vim did so for his personal use.  He developed the features that he personally wanted to use.  As years went on
@@ -63,126 +63,118 @@ These are words that you may come accross in this book or on the internet in a V
 book, these words are in bold when used in the context detailed in this section.  For example if this book uses the word "buffer" but it is not bold, think in terms of a normal dictionary definition.
 If it is bold, use the meaning detailed in this section.
 
-abbreviations
-alternate file (saved in the hashtag register) or alternate buffer
-argument list
-autocommands
-bottom-line command (includes searches and anything on bottom line that is not formally a command)
-buffers (active, inactive, hidden, unlisted, modifiable, read-only, read errors)
-commands and colon commands
-ctags
-dotfiles
-edit (as a unit used in undo)
-events
-ex editor
-instance of Vim
-jump and the distinction between and jump and a motion (if it goes into the jump list it is a jump; motions are always within the file; if it goes to another buffer it is a jump; some motions within file are classified as jumps and go in the jump list)
-macros
-mapping
-modes (normal, command, ex, insert, visual, select, operator pending, insert normal mode, replace mode)
-motions
-movement command
-NERDTree
-operator
-options
-Pathogen
-pattern in context of searching
-plugins
-power user
-put v paste
-registers
-scripts
-session
-special buffers (quickfix, help, directory, scratch)
-status line
-swp or swap files
-tab pages or tabs
-tag stacking or tag stacks
-text objects (block and non block text objects)
-toggle options (note the set option|nooption|option?|option!|option(ampersand) Syntax)
-transparent editing
-vi
-vimrc
-VIMRUNTIME directory
-Vundle
-windows
-word
-WORD
-yank v copy
-row
-column
-modelines
-buffer list
-current selection and real clipboard from user manual page 73
+\begin{itemize}[leftmargin=*, label={}]
+  \item \textbf{abbreviations} An abbreviation is a mapping between two strings.  Once you create the abbreviation, when you enter the abbreviation it will automatically be replaced by the string you mapped it to.  Abbreviations apply in Insert mode, Replace mode and Command-line mode.  This can be used to save typing for long words that you use often.  And you can use it to automatically correct obvious spelling errors.
+  \item \textbf{alternate file} (saved in the hashtag register) or alternate buffer
+If there already was a current file name, then that one becomes the alternate
+file name.  It can be used with "#" on the command line |:_#| and you can use
+the |CTRL-^| command to toggle between the current and the alternate file.
+However, the alternate file name is not changed when |:keepalt| is used.
+An alternate file name is remembered for each window.
+  \item \textbf{argument list} Placeholder definition.
+  \item \textbf{autocommands} Placeholder definition.
+  \item \textbf{ctags} Placeholder definition.
+  \item \textbf{dotfiles} Placeholder definition.
+  \item \textbf{events} Placeholder definition.
+  \item \textbf{ex editor} Placeholder definition.
+  \item \textbf{instance of Vim} Placeholder definition.
+  \item \textbf{macros} Placeholder definition.
+  \item \textbf{mapping} Placeholder definition.
+  \item \textbf{motions} Placeholder definition.
+  \item \textbf{movement command} Placeholder definition.
+  \item \textbf{NERDTree} Placeholder definition.
+  \item \textbf{operator} Placeholder definition.
+  \item \textbf{options} Placeholder definition.
+  \item \textbf{Pathogen} Placeholder definition.
+  \item \textbf{plugins} Placeholder definition.
+  \item \textbf{power user} Placeholder definition.
+  \item \textbf{put v paste} Placeholder definition.
+  \item \textbf{registers} Placeholder definition.
+  \item \textbf{scripts} Placeholder definition.
+  \item \textbf{session} Placeholder definition.
+  \item \textbf{status line} Placeholder definition.
+  \item \textbf{swap files} Placeholder definition.
+  \item \textbf{tag stacking} Placeholder definition.
+  \item \textbf{transparent editing} Placeholder definition.
+  \item \textbf{vi} Placeholder definition.
+  \item \textbf{vimrc} Placeholder definition.
+  \item \textbf{VIMRUNTIME directory} Placeholder definition.
+  \item \textbf{Vundle} Placeholder definition.
+  \item \textbf{windows} Placeholder definition.
+  \item \textbf{word} Placeholder definition.
+  \item \textbf{WORD} Placeholder definition.
+  \item \textbf{row} Placeholder definition.
+  \item \textbf{column} Placeholder definition.
+  \item \textbf{buffer list} Placeholder definition.
+  \item \textbf{bottom-line command} (includes searches and anything on bottom line that is not formally a command)
+  \item \textbf{buffers} (active, inactive, hidden, unlisted, modifiable, read-only, read errors)
+  \item \textbf{commands} and colon commands
+  \item \textbf{edit} (as a unit used in undo)
+  \item \textbf{jump} and the distinction between and jump and a motion (if it goes into the jump list it is a jump; motions are always within the file; if it goes to another buffer it is a jump; some motions within file are classified as jumps and go in the jump list)
+  \item \textbf{modes} (normal, command, ex, insert, visual, select, operator pending, insert normal mode, replace mode)
+  \item \textbf{pattern} in context of searching
+  \item \textbf{special buffers} Placeholder definition.  (quickfix, help, directory, scratch)
+  \item \textbf{tab pages} Placeholder definition.  or tabs
+  \item \textbf{text objects} Placeholder definition.  (block and non block text objects)
+  \item \textbf{toggle options} Placeholder definition.  (note the set option|nooption|option?|option!|option(ampersand) Syntax)
+  \item \textbf{yank} Placeholder definition. not to be confused with copy
+  \item \textbf{copy} Placeholder definition. not to be confused with yank
+  \item \textbf{modelines} Placeholder definition.  comments that define options automatially p268 Oualline
+  \item \textbf{current selection} Placeholder definition.  from user manual page 73
+  \item \textbf{real clipboard} Placeholder definition.  from user manual page 73
+\end{itemize}
 
 \chapter{Mechanisms of The Vim Universe}
 \section{Modes}
-\section{Vim Command Grammars}
 Vim is a modal editor.  That simply means that Vim is at all times in only one mode and your keystrokes will mean something different to Vim depending on the modal context in which they are typed.  There
 are two main Modes and several others
-\section{Concept of an Edit}
 \section{Commands}
   \subsection{Colon Commands}
   Colon commands, Command-line commands, and Ex Commands are all the same.
   \subsection{Normal Mode Commands}
   \subsection{Other Mode Commands}
+\section{Vim Command Grammars}
+motions
+\section{Concept of an Edit}
 \section{Options}
-\section{Mouse}
-\section{Plugins and Scripts}
-\section{Dotfiles}
 \section{Buffers}
 \section{Registers}
-\section{Tags}
 \section{Marks}
-\section{Autocommands}
+\section{Tags}
+\section{Dotfiles}
 \section{Command Line Arguments}
+\section{Plugins and Scripts}
+\section{Autocommands}
 \section{Modelines}
-comments that define options automatially p268 Oualline
+\section{Mouse}
 \section{Regex}
 
 \chapter{Capabilities}
 Vim is a text editor with an incredible amount of features.  This section will allow you to wrap your mind around the vast set of Vim capabilities.  This section will not dive very deep into how to invoke
 functionality.  To do so would be far more information than is necessary to wrap your mind around Vim capabilities.
-\section{Navigating}
-  \subsection{Moving Around a File}
+\section{Navigating a File}
+  \subsection{Scrolling}
+  \subsection{Jumping}
   \subsection{Search}
+  \subsection{Bookmarking}
 \section{Editing}
   \subsection{Inserting}
-    \subsubsection{Basic Inserts and appending}
-The most basic way to insert in Vim is to activate Insert Mode and start typing.  The most basic method for activating Insert Mode is the Normal Mode command, i.  Normal Mode is restored by pressing
-the ESC key.  For added efficiency there are a variety of Normal Mode commands that activate Insert Mode and reposition the cursor for typing.  These can be pretty nifty.  Here are a few:
-%    \begin{center}
-%      \begin{tabular}{ |c|c| }
-%        \hline
-%        Normal Mode Command & Cursor Repositioning \\
-%        \hline
-%        i & none \\
-%        \hline
-%        I & before the first non-whitespace character in the line \\
-%        \hline
-%        a & one column to the right \\
-%        \hline
-%        A & after the last non-whitespace character in the line \\
-%        \hline
-%        o & on new line under the curent line\\
-%        \hline
-%        O & on new line above the curent line\\
-%        \hline
-%        gi & position of previous insert \\
-%        \hline
-%      \end{tabular}
-%    \end{center}
-It is possible to enable the point and click insertion that most editors use in Vim as well.  See the section on Mouse Compatability.
-    \subsubsection{Autocompletion}
-    \subsubsection{Special Characters and Foreign Language}
+  \subsection{Autocompletion}
   \subsection{Deleting}
   \subsection{Replacing}
+  \subsection{Substitutions}
+  \subsection{Comments}
+  \subsection{Sorting}
+  \subsection{Editing Tabular Data}
+  \subsection{Formatting}
   \subsection{Cut Copy Paste}
   \subsection{Indenting}
   \subsection{Toggling Case}
+  \subsection{Special Characters and Foreign Language}
 \section{Work Environment}
   \subsection{Graphical User Interface (GUI)}
   \subsection{File Management}
+  \subsection{Undo and Redo}
   \subsection{Mouse Compatability}
 \end{document}
 

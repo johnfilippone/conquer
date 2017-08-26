@@ -147,13 +147,13 @@ Editing text
         use command with number arg
         use comparator chars
         use ctrl-g and ctrl-t in insert mode
-    inserting tabs vs spaces
-      expandtab makes the TAB key insert spaces
-      override this with CTRL-V before writing a tab (useful for Makefiles)
-      combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
-      control size of tabs
-      expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
-      shiftround will make vim always tab to a column that is a multiple of shiftwidth
+      inserting tabs vs spaces
+        expandtab makes the TAB key insert spaces
+        override this with CTRL-V before writing a tab (useful for Makefiles)
+        combination of tabs and spaces is possible with softtabstop and smarttab and shiftwidth
+        control size of tabs
+        expandtab does not affect existing tabs but :retab command will convert tabs to whatever vim is currently configured to
+        shiftround will make vim always tab to a column that is a multiple of shiftwidth
     completion
       whole line
       current buffer keywords
