@@ -59,36 +59,50 @@ You can read this straight through or you can skip to the parts you really care 
 scope of Vim capabilities.  If you are mystified by the terminology in this book, refer to the Vim Terminology chapter.
 
 \chapter{Vim Terminology}
-These are words that you may come accross in this book or on the internet in a Vim context.  Many of these can be very mystifying if you don't understand their special Vim meaning.  Throughout this
+These are words that you may come across in this book or on the internet in a Vim context.  Many of these can be very mystifying if you don't understand their special Vim meaning.  Throughout this
 book, these words are in bold when used in the context detailed in this section.  For example if this book uses the word "buffer" but it is not bold, think in terms of a normal dictionary definition.
-If it is bold, use the meaning detailed in this section.
+If it is bold, use the meaning detailed in this section.  Each of these terms can also be searched in the vim help files by using the command :help <term>
 
 \begin{itemize}[leftmargin=*, label={}]
-  \item \textbf{abbreviations} An abbreviation is a mapping between two strings.  Once you create the abbreviation, when you enter the abbreviation it will automatically be replaced by the string you mapped it to.  Abbreviations apply in Insert mode, Replace mode and Command-line mode.  This can be used to save typing for long words that you use often.  And you can use it to automatically correct obvious spelling errors.
-  \item \textbf{alternate file} (saved in the hashtag register) or alternate buffer
-If there already was a current file name, then that one becomes the alternate
-file name.  It can be used with "#" on the command line |:_#| and you can use
-the |CTRL-^| command to toggle between the current and the alternate file.
-However, the alternate file name is not changed when |:keepalt| is used.
-An alternate file name is remembered for each window.
-  \item \textbf{argument list} Placeholder definition.
-  \item \textbf{autocommands} Placeholder definition.
-  \item \textbf{ctags} Placeholder definition.
-  \item \textbf{dotfiles} Placeholder definition.
-  \item \textbf{events} Placeholder definition.
-  \item \textbf{ex editor} Placeholder definition.
-  \item \textbf{instance of Vim} Placeholder definition.
-  \item \textbf{macros} Placeholder definition.
-  \item \textbf{mapping} Placeholder definition.
-  \item \textbf{motions} Placeholder definition.
-  \item \textbf{movement command} Placeholder definition.
-  \item \textbf{NERDTree} Placeholder definition.
-  \item \textbf{operator} Placeholder definition.
-  \item \textbf{options} Placeholder definition.
+  \item \textbf{abbreviations} An abbreviation is a mapping between two strings.  Once you create the abbreviation, when you type the abbreviation it will automatically be replaced (while you are
+    typing) by the string you mapped it to.  Abbreviations apply in Insert mode, Replace mode and Command-line mode.  This can be used to save typing for long words that you use often.  And you can
+    also use it to automatically correct obvious spelling errors.
+  \item \textbf{alternate-file} (A.K.A alternate buffer) The alternate file is the name of the file that was edited previously.  When you open a new file in a window, the name of that file is the
+    current file.  If there was already a current file in the window that the new file was opened in, then the name of that file becomes the alternate file.  If you like using more than one buffer in
+    the same window, marking the previously edited file as the alternate file allows for useful commands that help you navigate between buffers.  However, if you do not ever edit more than one file
+    per window, you will probably never interface with the alternate file mechanism.
+  \item \textbf{argument-list} This refers to the arguments you provide on the command line when starting vim.  Do not confuse this with the buffer-list.  The argument is global for all windows in the
+    vim session.
+  \item \textbf{autocommand} Autocommands are a Vim mechanism that allows you to program vim to automatically execute some vim script when an event happens.  There is a large variety of supported
+    events and you are only limited by what Vim script can accomplish.  One common application is to create an autocommand that will delete all trailing white space in the file when you
+    write the file.
+  \item \textbf{ctags} One of many external programs that generates tag files.  Tag files created by ctags, or a variety of other compatible programs, allow Vim to have awareness of where functions,
+    classes, variables and other identifiers exist and are defined.  This opens the door to a lot of very powerful navigation.
+  \item \textbf{current-file} (A.K.A current buffer) The current file refers the name of the file that is currently being edited.  Each window has a current file.  If you like using more than one
+    buffer in the same window, the concept of a current file becomes meaningful when navigating between buffers.  However, if you do not ever edit more than one file per window, you will probably never
+    interface with current file because you will always be editing the current file.
+  \item \textbf{dotfiles} This refers to hidden configuration files in general.  Vim uses a number of dot files.  They are called dotfiles because their names start with a dot (i.e. .vimrc, .gvimrc,
+    .exrc, etc.).  In unix, starting a filename with a dot makes it a hidden file.  Vim supports a variety of dotfiles but the most commonly used is the .vimrc.  Simply create a file in your home
+    directory called .vimrc and any vim script you write in that file will be executed every time you open Vim.
+  \item \textbf{events} In Vim context, events almost certainly refers to autocommand events.  An event simply consists of a name and a definition of the action that triggers the event.  Search autocommand-events in the vim help files to find a complete list of supported autocommand events.
+  \item \textbf{ex editor} The ex editor is the predecessor to vi, which is the editor that Vim was initially modeled after.  The ex editor is a line editor, meaning it does not display a file on a
+    screen.  Rather, both reading and writing operations happen on a line by line basis only.  Most of the ex editor functionality is still present in Vim as it is quite ubiquitous to text editing.
+    You may never use ex commands or you may find them very useful depending on your personal work flow.
+  \item \textbf{instance of Vim} This refers to the execution of the program that is Vim.  When you open a terminal and use the Vim command to open Vim or open vim by any other means, you have created
+    an instance of Vim.  When you open files and windows and tabs you are still using the same instance of Vim.
+  \item \textbf{macros} A macro in Vim simply refers to a key mapping.  This means you can override the function of a keystroke or set of keystrokes by mapping it/them to another set of
+    keystrokes. However, you will find that people use this used to mean recording as well.  See definition for recording.
+  \item \textbf{mapping} A mapping allows you to change the function of a keystroke or set of keystrokes by mapping it to another set of keystrokes composed of one or more keys.
+  \item \textbf{motion} (A.K.A movement or movement command) A motion is any command that moves the cursor.
+  \item \textbf{NERDTree} NERDTree is a popular Vim plugin.  It's main feature is a graphical file browser that mimics what you see in many modern IDEs.
+  \item \textbf{operator} An operator is a command that operates on text.  Usually this involves changing or deleting the text in some way.  Search operator in the help file for a list of operators.
+    As you will find out there are multiple ways to select the text that is being operated on.  Potentially the most powerful way is by typing a motion right after an operator.
+  \item \textbf{options} You can think of options as Vim settings.  For a list of all options search for option-list in the help files.
   \item \textbf{Pathogen} Placeholder definition.
   \item \textbf{plugins} Placeholder definition.
   \item \textbf{power user} Placeholder definition.
   \item \textbf{put v paste} Placeholder definition.
+  \item \textbf{recording} Placeholder definition.
   \item \textbf{registers} Placeholder definition.
   \item \textbf{scripts} Placeholder definition.
   \item \textbf{session} Placeholder definition.
@@ -105,7 +119,7 @@ An alternate file name is remembered for each window.
   \item \textbf{WORD} Placeholder definition.
   \item \textbf{row} Placeholder definition.
   \item \textbf{column} Placeholder definition.
-  \item \textbf{buffer list} Placeholder definition.
+  \item \textbf{buffer-list} Placeholder definition.
   \item \textbf{bottom-line command} (includes searches and anything on bottom line that is not formally a command)
   \item \textbf{buffers} (active, inactive, hidden, unlisted, modifiable, read-only, read errors)
   \item \textbf{commands} and colon commands
